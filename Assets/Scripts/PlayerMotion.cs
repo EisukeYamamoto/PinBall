@@ -17,11 +17,16 @@ public class PlayerMotion : MonoBehaviour
     public GameObject Mallet;
     MalletMotion m_motion;
 
+    public float shotTimeLimit = 1f;
+    private float shotTimeNow = 0f;
+    public bool _afterShot;
+
     // Start is called before the first frame update
     void Start()
     {
         p_status = GetComponent<PlayerStatus>();
         m_motion = Mallet.GetComponent<MalletMotion>();
+        _afterShot = false;
     }
 
     // Update is called once per frame
@@ -35,6 +40,17 @@ public class PlayerMotion : MonoBehaviour
         targetPos.y = Mathf.Clamp(targetPos.y, bounds.yMin, bounds.yMax);
 
         transform.position = targetPos;
+
+        if (_afterShot)
+        {
+            shotTimeNow += Time.deltaTime;
+            if (shotTimeNow >= shotTimeLimit)
+            {
+                _afterShot = false;
+                shotTimeNow = 0f;
+            }
+        }
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -56,7 +72,11 @@ public class PlayerMotion : MonoBehaviour
 
     void Shot()
     {
+        Debug.Log("Shot");
+        Mallet.transform.rotation = Quaternion.identity;
         m_motion.rigidbody2D.AddForce(new Vector2(0, 1f) * m_motion.initSpeed * 1.5f);
+        _afterShot = true;
         p_status._catching = false;
+        
     }
 }

@@ -42,7 +42,8 @@ public class MalletMotion : MonoBehaviour
         if (p_status._catching)
         {
             rigidbody2D.velocity = Vector2.zero;
-            this.transform.position = Player.transform.position;
+            Vector2 p_pos = Player.transform.position;
+            this.transform.position = p_pos + p_status.player2Mallet;
         }
     }
 
