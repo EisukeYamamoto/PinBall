@@ -12,10 +12,16 @@ public class PlayerMotion : MonoBehaviour
 
     [SerializeField] Bounds bounds;
 
+    PlayerStatus p_status;
+
+    public GameObject Mallet;
+    MalletMotion m_motion;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        p_status = GetComponent<PlayerStatus>();
+        m_motion = Mallet.GetComponent<MalletMotion>();
     }
 
     // Update is called once per frame
@@ -29,5 +35,28 @@ public class PlayerMotion : MonoBehaviour
         targetPos.y = Mathf.Clamp(targetPos.y, bounds.yMin, bounds.yMax);
 
         transform.position = targetPos;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (p_status._catching)
+            {
+                Shot();
+            }
+            else
+            {
+                p_status._preparingToCatch = true;
+            }  
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            p_status._preparingToCatch = false;
+            p_status.Catch();
+        }
+    }
+
+    void Shot()
+    {
+        m_motion.rigidbody2D.AddForce(new Vector2(0, 1f) * m_motion.initSpeed * 1.5f);
+        p_status._catching = false;
     }
 }

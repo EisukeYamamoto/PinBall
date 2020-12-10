@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 78323652}
   - component: {fileID: 78323651}
   - component: {fileID: 78323650}
+  - component: {fileID: 78323653}
   - component: {fileID: 78323649}
   m_Layer: 0
   m_Name: Player
@@ -157,6 +158,7 @@ MonoBehaviour:
     xMax: 4
     yMin: -4.4
     yMax: -3
+  Mallet: {fileID: 434802444}
 --- !u!58 &78323650
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -237,6 +239,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &78323653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78323648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d7f14ee165941738c3d285fa25c768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preparingToCatch: 0
+  _canCatchMallet: 0
+  _catching: 0
 --- !u!1 &390842600
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,8 +468,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad25c3234bbe4b458e37ffd91e1271a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 78323648}
+  rigidbody2D: {fileID: 434802447}
   initPos: {x: 0, y: 1}
-  initSpeed: 200
+  initSpeed: 300
   waitTimeLimit: 5
   _failure: 0
 --- !u!1 &450082115
