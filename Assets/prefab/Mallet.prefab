@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad25c3234bbe4b458e37ffd91e1271a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 1458913000842467446, guid: 3e993446f7fbf4433a8fe13c9b9306fe, type: 3}
   rigidbody2D: {fileID: 866681893784884607}
   initPos: {x: 0, y: 1}
   initSpeed: 300

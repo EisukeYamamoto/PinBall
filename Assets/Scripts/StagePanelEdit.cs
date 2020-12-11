@@ -17,10 +17,4 @@ public class StagePanelEdit : MonoBehaviour
             Instantiate(itemSpace, parent + vec, Quaternion.identity);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
