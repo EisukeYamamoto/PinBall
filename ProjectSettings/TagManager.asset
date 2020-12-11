@@ -14,6 +14,7 @@ TagManager:
   - Bumper
   - ItemHolder
   - AreaHolder
+  - Wall
   layers:
   - Default
   - TransparentFX

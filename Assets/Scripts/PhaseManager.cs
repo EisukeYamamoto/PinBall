@@ -20,7 +20,7 @@ public class PhaseManager : MonoBehaviour
     public TextMeshProUGUI phaseText = default;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _pinballPhase = false;
         _stageEditPhase = false;
@@ -39,7 +39,7 @@ public class PhaseManager : MonoBehaviour
         PhaseText();
     }
 
-    public void PinballtoStafeEdit()
+    public void PinballtoStageEdit()
     {
         _pinballPhase = false;
         _stageEditPhase = true;
@@ -48,7 +48,7 @@ public class PhaseManager : MonoBehaviour
         Destroy(malletClone);
     }
 
-    public void StafeEdittoPinball()
+    public void StageEdittoPinball()
     {
 
     }
@@ -78,7 +78,7 @@ public class PhaseManager : MonoBehaviour
     // ゲーム開始処理
     IEnumerator ReadyGo()
     {
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
         malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
 
@@ -115,6 +115,6 @@ public class PhaseManager : MonoBehaviour
 
         message.text = "";
 
-        PinballtoStafeEdit();
+        PinballtoStageEdit();
     }
 }
