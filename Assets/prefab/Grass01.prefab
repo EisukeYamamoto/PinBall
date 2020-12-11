@@ -97,5 +97,5 @@ MonoBehaviour:
   itemSpace: {fileID: 4237926933389512922, guid: 84bf18931677e4a72969913d64ba456f,
     type: 3}
   vectors:
-  - {x: 0, y: 0}
+  - {x: -2.3, y: 0}
   - {x: 3, y: -1}

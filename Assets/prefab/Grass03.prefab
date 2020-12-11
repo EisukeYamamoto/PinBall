@@ -94,5 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a963350b947f745e8bbc12a9aaeed7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSpace: {fileID: 0}
-  vectors: []
+  itemSpace: {fileID: 4237926933389512922, guid: 84bf18931677e4a72969913d64ba456f,
+    type: 3}
+  vectors:
+  - {x: 0, y: 0.5}
