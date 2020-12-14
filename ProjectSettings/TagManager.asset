@@ -15,6 +15,7 @@ TagManager:
   - ItemHolder
   - AreaHolder
   - Wall
+  - PanelIcon
   layers:
   - Default
   - TransparentFX

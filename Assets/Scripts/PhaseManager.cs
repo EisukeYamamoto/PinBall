@@ -11,6 +11,8 @@ public class PhaseManager : MonoBehaviour
     private GameObject playerClone;
     private GameObject malletClone;
 
+    public GameObject PinballButton;
+
     public bool _pinballPhase;
     public bool _stageEditPhase;
 
@@ -19,11 +21,15 @@ public class PhaseManager : MonoBehaviour
 
     public TextMeshProUGUI phaseText = default;
 
+    public GameObject ItemManager;
+    ItemManager itemManager;
+
     // Start is called before the first frame update
     void Awake()
     {
         _pinballPhase = false;
         _stageEditPhase = false;
+        itemManager = ItemManager.GetComponent<ItemManager>();
         StartCoroutine(ReadyGo());
     }
 
@@ -33,7 +39,10 @@ public class PhaseManager : MonoBehaviour
         // 仮のクリア条件：Cキーを押す
         if (Input.GetKeyDown(KeyCode.C))
         {
-            PinballClear();
+            if (_pinballPhase)
+            {
+                PinballClear();
+            }        
         }
 
         PhaseText();
@@ -50,7 +59,8 @@ public class PhaseManager : MonoBehaviour
 
     public void StageEdittoPinball()
     {
-
+        _pinballPhase = true;
+        _stageEditPhase = false;
     }
 
     public void PinballClear()
@@ -58,19 +68,27 @@ public class PhaseManager : MonoBehaviour
         StartCoroutine(ToStageEdit());
     }
 
+    public void PinballStart()
+    {
+        StartCoroutine(ReadyGo());
+    }
+
     private void PhaseText()
     {
         if(_pinballPhase && !_stageEditPhase)
         {
             phaseText.text = "Pinball Phase";
+            PinballButton.SetActive(false);
         }
         else if (!_pinballPhase && _stageEditPhase)
         {
             phaseText.text = "StageEdit Phase";
+            PinballButton.SetActive(true);
         }
         else
         {
             phaseText.text = "";
+            PinballButton.SetActive(false);
         }
     }
 
@@ -81,6 +99,8 @@ public class PhaseManager : MonoBehaviour
         //yield return new WaitForEndOfFrame();
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
         malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
+
+        itemManager.PMFind();
 
         yield return new WaitForSeconds(1.0f);
 

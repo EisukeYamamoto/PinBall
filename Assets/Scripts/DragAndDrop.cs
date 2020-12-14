@@ -59,15 +59,26 @@ public class DragAndDrop: MonoBehaviour
         }   
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (phase._stageEditPhase)
         {
-            if (collision.gameObject.CompareTag("ItemSpace"))
+            if (this.gameObject.CompareTag("PanelIcon"))
             {
-                _inItemSpace = true;
-                spacePos = collision.gameObject.transform.position;
+                if (_fieldChack(collision))
+                {
+                    _inItemSpace = true;
+                    spacePos = collision.gameObject.transform.position;
+                }
             }
+            else
+            {
+                if (collision.gameObject.CompareTag("ItemSpace"))
+                {
+                    _inItemSpace = true;
+                    spacePos = collision.gameObject.transform.position;
+                }
+            }   
         } 
     }
 
@@ -75,11 +86,35 @@ public class DragAndDrop: MonoBehaviour
     {
         if (phase._stageEditPhase)
         {
-            if (collision.gameObject.CompareTag("ItemSpace"))
+            if (this.gameObject.CompareTag("PanelIcon"))
             {
-                _inItemSpace = false;
-                //spacePos = collision.gameObject.transform.position;
+                if(_fieldChack(collision))
+                {
+                    _inItemSpace = false;
+                    //spacePos = collision.gameObject.transform.position;
+                }
             }
+            else
+            {
+                if (collision.gameObject.CompareTag("ItemSpace"))
+                {
+                    _inItemSpace = false;
+                    //spacePos = collision.gameObject.transform.position;
+                }
+            }   
         }        
+    }
+
+    private bool _fieldChack(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Grass":
+            case "Volcano":
+            case "Snow":
+                return true;
+            default:
+                return false;
+        }
     }
 }

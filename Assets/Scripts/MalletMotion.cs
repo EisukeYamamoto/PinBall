@@ -16,6 +16,7 @@ public class MalletMotion : MonoBehaviour
     public float initSpeed = 200f;  // 最初のスピード
 
     public int bumpNum = 0;
+    public int panelNum = 0;
 
     public float waitTimeLimit = 3f;  // 失敗したときのロスタイム
     private float waitTimeNow = 0f;
@@ -72,11 +73,14 @@ public class MalletMotion : MonoBehaviour
                 MalletReset();
             }  
         }
+        // 仮
         if (collision.gameObject.CompareTag("Wall"))
         {
             if (phase._pinballPhase)
             {
                 bumpNum += 1;
+                panelNum += 1;
+                Debug.Log(bumpNum);
             }
         }
     }

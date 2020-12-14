@@ -73,7 +73,6 @@ public class PlayerMotion : MonoBehaviour
 
     void Shot()
     {
-        Debug.Log("Shot");
         Mallet.transform.rotation = Quaternion.identity;
         m_motion.rigidbody2D.AddForce(new Vector2(0, 1f) * m_motion.initSpeed * 1.5f);
         _afterShot = true;
