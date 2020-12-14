@@ -11,6 +11,9 @@ public class DragAndDrop: MonoBehaviour
     public bool _installaction;
     public bool _draging;
 
+    public GameObject alreadyEditObject;
+    public GameObject itemSpace;
+
     PhaseManager phase;
 
     void Start()
@@ -68,7 +71,13 @@ public class DragAndDrop: MonoBehaviour
                 if (_fieldChack(collision))
                 {
                     _inItemSpace = true;
+                    //Debug.Log(collision.gameObject.name);
                     spacePos = collision.gameObject.transform.position;
+                    if (collision.gameObject.CompareTag("Panel"))
+                    {
+                        alreadyEditObject = collision.gameObject;
+                        //Debug.Log(alreadyEditObject.name);
+                    }
                 }
             }
             else
@@ -77,6 +86,7 @@ public class DragAndDrop: MonoBehaviour
                 {
                     _inItemSpace = true;
                     spacePos = collision.gameObject.transform.position;
+                    itemSpace = collision.gameObject;
                 }
             }   
         } 
@@ -91,6 +101,7 @@ public class DragAndDrop: MonoBehaviour
                 if(_fieldChack(collision))
                 {
                     _inItemSpace = false;
+                    //alreadyEditObject = null;
                     //spacePos = collision.gameObject.transform.position;
                 }
             }
@@ -112,6 +123,7 @@ public class DragAndDrop: MonoBehaviour
             case "Grass":
             case "Volcano":
             case "Snow":
+            case "Panel":
                 return true;
             default:
                 return false;

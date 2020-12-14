@@ -89,6 +89,8 @@ public class ItemManager : MonoBehaviour
                     {
                         case "Bumper":
                             GameObject bumperClone = Instantiate(itemSeries[0], itemList[i].gameObject.transform.position, Quaternion.identity);
+                            bumperClone.name = itemSeries[0].name;
+                            bumperClone.transform.parent = drops.itemSpace.transform;
                             break;
                         default:
                             break;
@@ -134,18 +136,22 @@ public class ItemManager : MonoBehaviour
                     {
                         case "PanelIcon01":
                             GameObject panelClone01 = Instantiate(panelSeries[0]);
+                            panelClone01.name = panelSeries[0].name;
                             panelClone01.transform.position = panelList[i].gameObject.transform.position;
                             break;
                         case "PanelIcon02":
                             GameObject panelClone02 = Instantiate(panelSeries[1]);
+                            panelClone02.name = panelSeries[1].name;
                             panelClone02.transform.position = panelList[i].gameObject.transform.position;
                             break;
                         case "PanelIcon03":
                             GameObject panelClone03 = Instantiate(panelSeries[2]);
+                            panelClone03.name = panelSeries[2].name;
                             panelClone03.transform.position = panelList[i].gameObject.transform.position;
                             break;
                         case "PanelIcon04":
                             GameObject panelClone04 = Instantiate(panelSeries[3]);
+                            panelClone04.name = panelSeries[3].name;
                             panelClone04.transform.position = panelList[i].gameObject.transform.position;
                             break;
                         default:
@@ -155,6 +161,44 @@ public class ItemManager : MonoBehaviour
                     panelList[i].gameObject.SetActive(false);
 
                     panelList.RemoveAt(i);
+                    Debug.Log(drops.alreadyEditObject);
+                    if (drops.alreadyEditObject != null)
+                    {
+                        
+                        switch (drops.alreadyEditObject.name)
+                        {
+                            case "Panel01":
+                                GameObject PanelIconClone01 = Instantiate(panelIconSeries[0]);
+                                PanelIconClone01.name = panelIconSeries[0].name;
+                                ItemReset(drops.alreadyEditObject);
+                                drops.alreadyEditObject.SetActive(false);
+                                panelList.Insert(0, PanelIconClone01);
+                                break;
+                            case "Panel02":
+                                GameObject PanelIconClone02 = Instantiate(panelIconSeries[1]);
+                                PanelIconClone02.name = panelIconSeries[1].name;
+                                ItemReset(drops.alreadyEditObject);
+                                drops.alreadyEditObject.SetActive(false);
+                                panelList.Insert(0, PanelIconClone02);
+                                break;
+                            case "Panel03":
+                                GameObject PanelIconClone03 = Instantiate(panelIconSeries[2]);
+                                PanelIconClone03.name = panelIconSeries[2].name;
+                                ItemReset(drops.alreadyEditObject);
+                                drops.alreadyEditObject.SetActive(false);
+                                panelList.Insert(0, PanelIconClone03);
+                                break;
+                            case "Panel04":
+                                GameObject PanelIconClone04 = Instantiate(panelIconSeries[3]);
+                                PanelIconClone04.name = panelIconSeries[3].name;
+                                ItemReset(drops.alreadyEditObject);
+                                drops.alreadyEditObject.SetActive(false);
+                                panelList.Insert(0, PanelIconClone04);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -184,6 +228,28 @@ public class ItemManager : MonoBehaviour
             AreaHolders.transform.localPosition = hidePos;
             ItemHolders.transform.localPosition = appearPos;
             _panelBottunPushed = false;
+        }
+    }
+
+    private void ItemReset(GameObject already)
+    {
+        foreach(Transform itemSpace in already.transform)
+        {
+            if (itemSpace.childCount > 0)
+            {
+                foreach (Transform item in itemSpace)
+                {
+                    switch (item.gameObject.name)
+                    {
+                        case "Bumper":
+                            GameObject bumperIconClone = Instantiate(itemIconSeries[0]);
+                            itemList.Insert(0, bumperIconClone);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }   
         }
     }
 

@@ -80,7 +80,6 @@ public class MalletMotion : MonoBehaviour
             {
                 bumpNum += 1;
                 panelNum += 1;
-                Debug.Log(bumpNum);
             }
         }
     }
