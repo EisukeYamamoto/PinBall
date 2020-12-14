@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MalletMotion : MonoBehaviour
 {
-    public GameObject Player;
+    GameObject Player;
     PlayerStatus p_status;
+
+    PhaseManager phase;
 
     public Rigidbody2D rigidbody2D;
     Vector2 down;
@@ -13,23 +15,37 @@ public class MalletMotion : MonoBehaviour
     public Vector2 initPos;
     public float initSpeed = 200f;  // 最初のスピード
 
+    public int bumpNum = 0;
+    public int panelNum = 0;
+
     public float waitTimeLimit = 3f;  // 失敗したときのロスタイム
     private float waitTimeNow = 0f;
 
     public bool _failure = false;    //　失敗したときのフラグ
 
+    private bool _start = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         p_status = Player.GetComponent<PlayerStatus>();
+        phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         down = new Vector2(0, -1);
-        MalletStart();
+        bumpNum = 0;
+        //MalletStart();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!_start && phase._pinballPhase && !phase._stageEditPhase)
+        {
+            MalletStart();
+            _start = true;
+        }
+
         if (_failure)
         {
             waitTimeNow += Time.deltaTime;
@@ -51,8 +67,20 @@ public class MalletMotion : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("DeadLine"))
         {
-            _failure = true;    
-            MalletReset();
+            if (phase._pinballPhase)
+            {
+                _failure = true;
+                MalletReset();
+            }  
+        }
+        // 仮
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if (phase._pinballPhase)
+            {
+                bumpNum += 1;
+                panelNum += 1;
+            }
         }
     }
 

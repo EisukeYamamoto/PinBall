@@ -10,6 +10,13 @@ TagManager:
   - PlayerField
   - Mallet
   - DeadLine
+  - ItemSpace
+  - Bumper
+  - ItemHolder
+  - AreaHolder
+  - Wall
+  - PanelIcon
+  - Panel
   layers:
   - Default
   - TransparentFX

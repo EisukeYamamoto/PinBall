@@ -14,7 +14,7 @@ public class PlayerMotion : MonoBehaviour
 
     PlayerStatus p_status;
 
-    public GameObject Mallet;
+    GameObject Mallet;
     MalletMotion m_motion;
 
     public float shotTimeLimit = 1f;
@@ -24,6 +24,7 @@ public class PlayerMotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Mallet = GameObject.FindGameObjectWithTag("Mallet");
         p_status = GetComponent<PlayerStatus>();
         m_motion = Mallet.GetComponent<MalletMotion>();
         _afterShot = false;
@@ -72,7 +73,6 @@ public class PlayerMotion : MonoBehaviour
 
     void Shot()
     {
-        Debug.Log("Shot");
         Mallet.transform.rotation = Quaternion.identity;
         m_motion.rigidbody2D.AddForce(new Vector2(0, 1f) * m_motion.initSpeed * 1.5f);
         _afterShot = true;
