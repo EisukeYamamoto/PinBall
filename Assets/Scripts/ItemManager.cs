@@ -15,24 +15,27 @@ public class ItemManager : MonoBehaviour
 
     public bool _panelBottunPushed;  // true:パネルボタン/false:アイテムボタン
 
-
     MalletMotion m_motion;
 
     PhaseManager phase;
 
-    [Header("アイテムリスト")]
+    [Header("アイテムの種類")]
     public List<GameObject> itemSeries = new List<GameObject>();
     public List<GameObject> itemIconSeries = new List<GameObject>();
 
-    [Header("パネルリスト")]
+    [Header("パネルの種類")]
     public List<GameObject> panelSeries = new List<GameObject>();
     public List<GameObject> panelIconSeries = new List<GameObject>();
 
+    [Header("現在取得しているアイテム/パネル")]
     public List<GameObject> itemList = new List<GameObject>();
-    private bool _bumperChack = false;
-
     public List<GameObject> panelList = new List<GameObject>();
-    private bool _panelChack = false;
+
+    [Header("報酬で得たアイテム/パネル")]
+    public int awardItemNum;
+    public int awardPanelNum;
+    public List<GameObject> awardList = new List<GameObject>();
+    private List<GameObject> selectList = new List<GameObject>();
 
     private Vector2 hidePos;
     private Vector2 appearPos;
@@ -46,7 +49,6 @@ public class ItemManager : MonoBehaviour
         holders_item = ItemHolders.GetComponent<ItemHoldersManager>();
         holders_area = AreaHolders.GetComponent<ItemHoldersManager>();
         _panelBottunPushed = true;
-        _bumperChack = false;
         appearPos = new Vector3(-315, -20, 0);
         hidePos = new Vector3(-800, -20, 0);
     }
@@ -61,17 +63,17 @@ public class ItemManager : MonoBehaviour
     void ItemCheck()
     {
         // 仮
-        if (m_motion.bumpNum > 0 && m_motion.bumpNum % 3 == 0 && !_bumperChack &&
-            itemList.Count < holders_item.itemHolderList.Count)
-        {
-            GameObject bumperIconClone = Instantiate(itemIconSeries[0]);
-            itemList.Insert(0, bumperIconClone);
-            _bumperChack = true;
-        }
-        else if(m_motion.bumpNum > 0 && m_motion.bumpNum % 3 != 0)
-        {
-            _bumperChack = false;
-        }
+        //if (m_motion.bumpNum > 0 && m_motion.bumpNum % 3 == 0 && !_bumperChack &&
+        //    itemList.Count < holders_item.itemHolderList.Count)
+        //{
+        //    GameObject bumperIconClone = Instantiate(itemIconSeries[0]);
+        //    itemList.Insert(0, bumperIconClone);
+        //    _bumperChack = true;
+        //}
+        //else if(m_motion.bumpNum > 0 && m_motion.bumpNum % 3 != 0)
+        //{
+        //    _bumperChack = false;
+        //}
 
         if (itemList.Count >= 1)
         {
@@ -106,19 +108,19 @@ public class ItemManager : MonoBehaviour
     void PanelCheck()
     {
         // 仮
-        if (m_motion.panelNum > 0 && m_motion.panelNum % 5 == 0 && !_panelChack &&
-            panelList.Count < holders_area.itemHolderList.Count)
-        {
-            int randomValue = Random.Range(0, panelIconSeries.Count);
-            GameObject panelIconClone = Instantiate(panelIconSeries[randomValue]);
-            panelIconClone.name = panelIconSeries[randomValue].name;
-            panelList.Insert(0, panelIconClone);
-            _panelChack = true;
-        }
-        else if (m_motion.panelNum > 0 && m_motion.panelNum % 5 != 0)
-        {
-            _panelChack = false;
-        }
+        //if (m_motion.panelNum > 0 && m_motion.panelNum % 5 == 0 && !_panelChack &&
+        //    panelList.Count < holders_area.itemHolderList.Count)
+        //{
+        //    int randomValue = Random.Range(0, panelIconSeries.Count);
+        //    GameObject panelIconClone = Instantiate(panelIconSeries[randomValue]);
+        //    panelIconClone.name = panelIconSeries[randomValue].name;
+        //    panelList.Insert(0, panelIconClone);
+        //    _panelChack = true;
+        //}
+        //else if (m_motion.panelNum > 0 && m_motion.panelNum % 5 != 0)
+        //{
+        //    _panelChack = false;
+        //}
 
         if (panelList.Count >= 1)
         {
@@ -209,6 +211,24 @@ public class ItemManager : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         Mallet = GameObject.FindGameObjectWithTag("Mallet");
         m_motion = Mallet.GetComponent<MalletMotion>();
+    }
+
+    public void AwardList()
+    {
+        for (int i = 0 ; i < awardPanelNum ; i++)
+        {
+            int randomValue = Random.Range(0, panelIconSeries.Count);
+            GameObject panelIconClone = Instantiate(panelIconSeries[randomValue]);
+            panelIconClone.name = panelIconSeries[randomValue].name;
+            awardList.Add(panelIconClone);
+        }
+        for (int i = 0; i < awardItemNum; i++)
+        {
+            int randomValue = Random.Range(0, itemIconSeries.Count);
+            GameObject itemIconClone = Instantiate(itemIconSeries[randomValue]);
+            itemIconClone.name = panelIconSeries[randomValue].name;
+            awardList.Add(itemIconClone);
+        }
     }
 
     public void PanelActive()

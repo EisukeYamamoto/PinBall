@@ -33,7 +33,7 @@ public class PhaseManager : MonoBehaviour
         _stageEditPhase = false;
         itemManager = ItemManager.GetComponent<ItemManager>();
         _ready = false;
-        StartCoroutine(ReadyGo());
+        PinballStart();
     }
 
     // Update is called once per frame
