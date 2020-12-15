@@ -385,6 +385,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 261593529}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &254154307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5188168408292139400, guid: 5d1ff61f8b7a349f8921bfb89ea853a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5188168408675095755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &261593529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -722,6 +728,8 @@ MonoBehaviour:
   waitTime: 1
   phaseText: {fileID: 688726831}
   ItemManager: {fileID: 1932367238}
+  RewardPlate: {fileID: 2901244600881386197, guid: f8ef2f3e79d1f44e5963e6042cd87fd2,
+    type: 3}
 --- !u!4 &394376012
 Transform:
   m_ObjectHideFlags: 0
@@ -1091,6 +1099,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8928951963051907366, guid: 4198d3f3f3b544188bd1f3eb3e97bd30,
     type: 3}
   m_PrefabInstance: {fileID: 2125974150}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &484139692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8431691873449464468, guid: 4005063c7ef8e446e89938e2169e68f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8431691871603685925}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
@@ -1722,6 +1736,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4198d3f3f3b544188bd1f3eb3e97bd30, type: 3}
+--- !u!1 &869252391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3459942144781968624, guid: b95fdda3bdec44002bf9a3399440e174,
+    type: 3}
+  m_PrefabInstance: {fileID: 3459942146090520495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &883541145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3612,6 +3632,11 @@ MonoBehaviour:
   ItemHolders: {fileID: 392409421}
   AreaHolders: {fileID: 19783644}
   _panelBottunPushed: 0
+  groundList:
+  - {fileID: 484139692}
+  - {fileID: 2058981483}
+  - {fileID: 869252391}
+  - {fileID: 254154307}
   itemSeries:
   - {fileID: 819696198676333402, guid: 59afa9009588b4844b3f264a09ed631f, type: 3}
   itemIconSeries:
@@ -3628,6 +3653,11 @@ MonoBehaviour:
   - {fileID: 5188168408292139400, guid: c3b3a43298270496ca3e4bbbd9bee588, type: 3}
   itemList: []
   panelList: []
+  rewardItemNum: 3
+  rewardPanelNum: 3
+  canSelectNum: 2
+  rewardList: []
+  selectList: []
 --- !u!4 &1932367240
 Transform:
   m_ObjectHideFlags: 0
@@ -3712,6 +3742,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4198d3f3f3b544188bd1f3eb3e97bd30, type: 3}
+--- !u!1 &2058981483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2989874336014703220, guid: eb048fd947dc445b6ad3861c22ddedc7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2989874335834788508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2091592787
 PrefabInstance:
   m_ObjectHideFlags: 0

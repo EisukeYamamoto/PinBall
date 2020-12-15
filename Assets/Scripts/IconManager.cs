@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DragAndDrop: MonoBehaviour
+public class IconManager: MonoBehaviour
 {
     private Vector3 screenPoint;
     private Vector3 offset;
@@ -13,12 +13,15 @@ public class DragAndDrop: MonoBehaviour
 
     public GameObject alreadyEditObject;
     public GameObject itemSpace;
+    public int groundNum;
 
     PhaseManager phase;
+    ItemManager itemManager;
 
     void Start()
     {
         phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
+        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         prevPos = this.transform.position;
         _inItemSpace = false;
         _installaction = false;
@@ -71,13 +74,15 @@ public class DragAndDrop: MonoBehaviour
                 if (_fieldChack(collision))
                 {
                     _inItemSpace = true;
-                    //Debug.Log(collision.gameObject.name);
                     spacePos = collision.gameObject.transform.position;
-                    if (collision.gameObject.CompareTag("Panel"))
-                    {
-                        alreadyEditObject = collision.gameObject;
-                        //Debug.Log(alreadyEditObject.name);
-                    }
+                    groundNum = itemManager.groundList.IndexOf(collision.gameObject);
+                }
+                else if (collision.gameObject.CompareTag("Panel"))
+                {
+                    _inItemSpace = true;
+                    spacePos = collision.gameObject.transform.position;
+                    alreadyEditObject = collision.gameObject;
+                    Debug.Log(alreadyEditObject.name);
                 }
             }
             else
@@ -98,10 +103,11 @@ public class DragAndDrop: MonoBehaviour
         {
             if (this.gameObject.CompareTag("PanelIcon"))
             {
-                if(_fieldChack(collision))
+                if(_fieldChack(collision) || collision.gameObject.CompareTag("Panel"))
                 {
                     _inItemSpace = false;
-                    //alreadyEditObject = null;
+                    alreadyEditObject = null;
+
                     //spacePos = collision.gameObject.transform.position;
                 }
             }
@@ -123,7 +129,6 @@ public class DragAndDrop: MonoBehaviour
             case "Grass":
             case "Volcano":
             case "Snow":
-            case "Panel":
                 return true;
             default:
                 return false;

@@ -24,6 +24,8 @@ public class PhaseManager : MonoBehaviour
     public GameObject ItemManager;
     ItemManager itemManager;
 
+    public GameObject RewardPlate;
+
     private bool _ready;
 
     // Start is called before the first frame update
@@ -54,10 +56,11 @@ public class PhaseManager : MonoBehaviour
     public void PinballtoStageEdit()
     {
         _pinballPhase = false;
-        _stageEditPhase = true;
-
+        
         Destroy(playerClone);
         Destroy(malletClone);
+
+        StartCoroutine(RewardSelect());
     }
 
     public void StageEdittoPinball()
@@ -104,6 +107,7 @@ public class PhaseManager : MonoBehaviour
     {
         //yield return new WaitForEndOfFrame();
         _ready = true;
+        itemManager.GroundColliderSwitchAll(true);
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
         malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
 
@@ -144,5 +148,23 @@ public class PhaseManager : MonoBehaviour
         message.text = "";
 
         PinballtoStageEdit();
+    }
+
+    // 報酬選択処理
+    IEnumerator RewardSelect()
+    {
+        yield return new WaitForEndOfFrame();
+        itemManager.RewardListGenarate();
+
+        itemManager.GroundColliderSwitchAll(false);
+        GameObject RewardPlateClone = Instantiate(RewardPlate);
+        RewardPlateClone.name = RewardPlate.name;
+        RewardManager rewardManager = RewardPlateClone.GetComponent<RewardManager>();
+
+        yield return new WaitUntil(() => rewardManager._selecting == false);
+        itemManager.AddReward();
+        RewardPlateClone.SetActive(false);
+        itemManager.GroundColliderSwitchAll(true);
+        _stageEditPhase = true;
     }
 }
