@@ -24,12 +24,15 @@ public class PhaseManager : MonoBehaviour
     public GameObject ItemManager;
     ItemManager itemManager;
 
+    private bool _ready;
+
     // Start is called before the first frame update
     void Awake()
     {
         _pinballPhase = false;
         _stageEditPhase = false;
         itemManager = ItemManager.GetComponent<ItemManager>();
+        _ready = false;
         StartCoroutine(ReadyGo());
     }
 
@@ -70,7 +73,10 @@ public class PhaseManager : MonoBehaviour
 
     public void PinballStart()
     {
-        StartCoroutine(ReadyGo());
+        if (!_ready)
+        {
+            StartCoroutine(ReadyGo());
+        }      
     }
 
     private void PhaseText()
@@ -97,6 +103,7 @@ public class PhaseManager : MonoBehaviour
     IEnumerator ReadyGo()
     {
         //yield return new WaitForEndOfFrame();
+        _ready = true;
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
         malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
 
@@ -121,6 +128,7 @@ public class PhaseManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         message.text = "";
+        _ready = false;
     }
 
     // 戦闘終了処理
