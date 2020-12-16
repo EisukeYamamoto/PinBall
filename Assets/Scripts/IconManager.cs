@@ -45,6 +45,12 @@ public class IconManager: MonoBehaviour
             Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint) + this.offset;
             this.transform.position = currentPosition;
             _draging = true;
+            if (this.transform.gameObject.tag == "PanelIcon")
+            {
+                itemManager.PanelColliderSwitch(true);
+            }
+
+            
         }   
     }
 
@@ -57,6 +63,7 @@ public class IconManager: MonoBehaviour
                 this.transform.position = spacePos;
                 _installaction = true;
                 StartCoroutine(MouseUpLimit());
+                itemManager.PanelColliderSwitch(false);
             }
             else
             {

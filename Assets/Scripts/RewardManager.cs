@@ -33,7 +33,7 @@ public class RewardManager : MonoBehaviour
             RaycastHit2D hit2D = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
             if (hit2D)
             {
-                Debug.Log(hit2D.transform.gameObject);
+                //Debug.Log(hit2D.transform.gameObject);
                 if (itemManager.rewardList.Contains(hit2D.transform.gameObject))
                 {
                     RewardCheck(hit2D.transform.gameObject);

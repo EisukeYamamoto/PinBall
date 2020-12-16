@@ -6,6 +6,7 @@ using TMPro;
 
 public class PhaseManager : MonoBehaviour
 {
+    public int phaseNum;
     public GameObject Player;
     public GameObject Mallet;
     private GameObject playerClone;
@@ -31,6 +32,7 @@ public class PhaseManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        phaseNum = 1;
         _pinballPhase = false;
         _stageEditPhase = false;
         itemManager = ItemManager.GetComponent<ItemManager>();
@@ -108,6 +110,7 @@ public class PhaseManager : MonoBehaviour
         //yield return new WaitForEndOfFrame();
         _ready = true;
         itemManager.GroundColliderSwitchAll(true);
+        itemManager.PanelColliderSwitch(true);
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
         malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
 
@@ -166,8 +169,8 @@ public class PhaseManager : MonoBehaviour
         itemManager.AddReward();
         RewardPlateClone.SetActive(false);
         itemManager.GroundColliderSwitchAll(true);
-        itemManager.PanelColliderSwitch(true);
         itemManager.ExistPanelChack(false);
         _stageEditPhase = true;
+        phaseNum += 1;
     }
 }

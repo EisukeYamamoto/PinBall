@@ -166,7 +166,7 @@ public class ItemManager : MonoBehaviour
                 }
                 if (icon._installaction)
                 {
-                    Debug.Log(icon.alreadyEditObject);
+                    //Debug.Log(icon.alreadyEditObject);
                     if (icon.alreadyEditObject != null)
                     {
                         GameObject ItemIconClone = FindFromSeriesWithIcon(icon.alreadyEditObject, itemSeries, itemIconSeries);
