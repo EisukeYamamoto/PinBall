@@ -157,6 +157,7 @@ public class PhaseManager : MonoBehaviour
         itemManager.RewardListGenarate();
 
         itemManager.GroundColliderSwitchAll(false);
+        itemManager.PanelColliderSwitch(false);
         GameObject RewardPlateClone = Instantiate(RewardPlate);
         RewardPlateClone.name = RewardPlate.name;
         RewardManager rewardManager = RewardPlateClone.GetComponent<RewardManager>();
@@ -165,7 +166,8 @@ public class PhaseManager : MonoBehaviour
         itemManager.AddReward();
         RewardPlateClone.SetActive(false);
         itemManager.GroundColliderSwitchAll(true);
-        itemManager.ExistPanelChack();
+        itemManager.PanelColliderSwitch(true);
+        itemManager.ExistPanelChack(false);
         _stageEditPhase = true;
     }
 }

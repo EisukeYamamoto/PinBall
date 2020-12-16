@@ -30,8 +30,9 @@ public class ItemManager : MonoBehaviour
     public List<GameObject> panelSeries = new List<GameObject>();
     public List<GameObject> panelIconSeries = new List<GameObject>();
 
-    [Header("現在ステージに存在しているアイテム")]
+    [Header("現在ステージに存在しているアイテム/パネル")]
     public List<GameObject> existItem = new List<GameObject>();
+    public List<GameObject> existPanel = new List<GameObject>();
 
     [Header("現在取得しているアイテム/パネル")]
     public List<GameObject> itemList = new List<GameObject>();
@@ -128,12 +129,14 @@ public class ItemManager : MonoBehaviour
                         GroundColliderSwitch(icon.groundNum, false);
                     }
                     GameObject PanelClone = FindFromSeriesWithIcon(panelList[i], panelIconSeries, panelSeries);
+                    existPanel.Add(PanelClone);
                     PanelClone.transform.position = panelList[i].gameObject.transform.position;
 
                     if (icon.alreadyEditObject != null)
                     {
                         GameObject PanelIconClone = FindFromSeriesWithIcon(icon.alreadyEditObject, panelSeries, panelIconSeries);
                         ItemReset(icon.alreadyEditObject);
+                        existPanel.Remove(icon.alreadyEditObject.gameObject);
                         icon.alreadyEditObject.SetActive(false);
                         panelList[i].gameObject.SetActive(false);
                         panelList.RemoveAt(i);
@@ -157,6 +160,10 @@ public class ItemManager : MonoBehaviour
             foreach (GameObject Item in existItem)
             {
                 var icon = Item.GetComponent<IconManager>();
+                if (!icon._draging)
+                {
+                    Item.transform.localPosition = new Vector2(0, 0);
+                }
                 if (icon._installaction)
                 {
                     Debug.Log(icon.alreadyEditObject);
@@ -171,6 +178,7 @@ public class ItemManager : MonoBehaviour
                     else
                     {
                         Item.transform.parent = icon.itemSpace.transform;
+                        
                     }
                 }
             }
@@ -256,6 +264,15 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public void PanelColliderSwitch(bool _flag)
+    {
+        foreach (GameObject Panel in existPanel)
+        {
+            Panel.GetComponent<BoxCollider2D>().enabled = _flag;
+        }
+    }
+
+
     public void GroundColliderSwitchAll(bool _flag)
     {
         foreach(GameObject Ground in groundList)
@@ -267,7 +284,6 @@ public class ItemManager : MonoBehaviour
     public void GroundColliderSwitch(int num, bool _flag)
     {
         groundList[num].GetComponent<BoxCollider2D>().enabled = _flag;
-        Debug.Log(num);
     }
 
     private GameObject FindFromSeries(GameObject A, List<GameObject> Series)
@@ -300,18 +316,16 @@ public class ItemManager : MonoBehaviour
         return Target;
     }
 
-    public void ExistPanelChack()
+    public void ExistPanelChack(bool _flag)
     {
-        GameObject[] Panel = GameObject.FindGameObjectsWithTag("Panel");
-        List<GameObject> Panels = new List<GameObject>();
-        Panels.AddRange(Panel);
-        foreach(GameObject ExistPanel in Panels)
+   
+        foreach(GameObject ExistPanel in existPanel)
         {
             foreach(GameObject Ground in groundList)
             {
                 if(ExistPanel.transform.position == Ground.transform.position)
                 {
-                    Ground.GetComponent<BoxCollider2D>().enabled = false;
+                    Ground.GetComponent<BoxCollider2D>().enabled = _flag;
                     break;
                 }
             }
