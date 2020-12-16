@@ -56,6 +56,7 @@ public class IconManager: MonoBehaviour
             {
                 this.transform.position = spacePos;
                 _installaction = true;
+                StartCoroutine(MouseUpLimit());
             }
             else
             {
@@ -82,7 +83,23 @@ public class IconManager: MonoBehaviour
                     _inItemSpace = true;
                     spacePos = collision.gameObject.transform.position;
                     alreadyEditObject = collision.gameObject;
-                    Debug.Log(alreadyEditObject.name);
+                    groundNum = 100;
+                    //Debug.Log(alreadyEditObject.name);
+                }
+            }
+            else if (this.gameObject.CompareTag("ItemIcon"))
+            {
+                if (collision.gameObject.CompareTag("ItemSpace"))
+                {
+                    _inItemSpace = true;
+                    spacePos = collision.gameObject.transform.position;
+                    itemSpace = collision.gameObject;
+                }
+                else if (_itemChack(collision))
+                {
+                    _inItemSpace = true;
+                    spacePos = collision.gameObject.transform.position;
+                    alreadyEditObject = collision.gameObject;
                 }
             }
             else
@@ -92,6 +109,12 @@ public class IconManager: MonoBehaviour
                     _inItemSpace = true;
                     spacePos = collision.gameObject.transform.position;
                     itemSpace = collision.gameObject;
+                }
+                else if (_itemChack(collision))
+                {
+                    _inItemSpace = true;
+                    spacePos = collision.gameObject.transform.position;
+                    alreadyEditObject = collision.gameObject;
                 }
             }   
         } 
@@ -107,8 +130,21 @@ public class IconManager: MonoBehaviour
                 {
                     _inItemSpace = false;
                     alreadyEditObject = null;
-
+                    groundNum = 100;
                     //spacePos = collision.gameObject.transform.position;
+                }
+            }
+            else if (this.gameObject.CompareTag("ItemIcon"))
+            {
+                if (collision.gameObject.CompareTag("ItemSpace"))
+                {
+                    _inItemSpace = false;
+                    alreadyEditObject = null;
+                }
+                else if (_itemChack(collision))
+                {
+                    _inItemSpace = false;
+                    alreadyEditObject = null;
                 }
             }
             else
@@ -116,9 +152,14 @@ public class IconManager: MonoBehaviour
                 if (collision.gameObject.CompareTag("ItemSpace"))
                 {
                     _inItemSpace = false;
-                    //spacePos = collision.gameObject.transform.position;
+                    alreadyEditObject = null;
                 }
-            }   
+                else if (_itemChack(collision))
+                {
+                    _inItemSpace = false;
+                    alreadyEditObject = null;
+                }
+            }
         }        
     }
 
@@ -134,4 +175,27 @@ public class IconManager: MonoBehaviour
                 return false;
         }
     }
+
+    private bool _itemChack(Collider2D collision)
+    {
+        bool hit = false;
+        foreach(GameObject item in itemManager.itemSeries)
+        {
+            if(collision.gameObject.name == item.name)
+            {
+                hit = true;
+            }
+        }
+        return hit;
+    }
+
+    IEnumerator MouseUpLimit()
+    {
+        yield return new WaitForEndOfFrame();
+
+        yield return new WaitForEndOfFrame();
+
+        _installaction = false;
+    }
+
 }

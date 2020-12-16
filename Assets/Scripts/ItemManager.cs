@@ -30,6 +30,9 @@ public class ItemManager : MonoBehaviour
     public List<GameObject> panelSeries = new List<GameObject>();
     public List<GameObject> panelIconSeries = new List<GameObject>();
 
+    [Header("現在ステージに存在しているアイテム")]
+    public List<GameObject> existItem = new List<GameObject>();
+
     [Header("現在取得しているアイテム/パネル")]
     public List<GameObject> itemList = new List<GameObject>();
     public List<GameObject> panelList = new List<GameObject>();
@@ -62,7 +65,10 @@ public class ItemManager : MonoBehaviour
     {
         ItemCheck();
         PanelCheck();
+        ExistItemCheck();
     }
+
+
 
     void ItemCheck()
     {
@@ -79,10 +85,25 @@ public class ItemManager : MonoBehaviour
                 if (icon._installaction)
                 {
                     GameObject itemClone = FindFromSeriesWithIcon(itemList[i], itemIconSeries, itemSeries);
-                    itemClone.transform.parent = icon.itemSpace.transform;
+                    existItem.Add(itemClone);
+                    itemClone.transform.position = itemList[i].transform.position;
+                    if(icon.alreadyEditObject != null)
+                    {
+                        GameObject ItemIconClone = FindFromSeriesWithIcon(icon.alreadyEditObject, itemSeries, itemIconSeries);
+                        existItem.Remove(icon.alreadyEditObject.gameObject);
+                        itemClone.transform.parent = icon.alreadyEditObject.transform.parent;
+                        Destroy(icon.alreadyEditObject);
+                        itemList[i].gameObject.SetActive(false);
+                        itemList.RemoveAt(i);
+                        itemList.Insert(0, ItemIconClone);
+                    }
+                    else
+                    {
+                        itemClone.transform.parent = icon.itemSpace.transform;
 
-                    itemList[i].gameObject.SetActive(false);
-                    itemList.RemoveAt(i);
+                        itemList[i].gameObject.SetActive(false);
+                        itemList.RemoveAt(i);
+                    }   
                 }
             }
         }
@@ -102,7 +123,10 @@ public class ItemManager : MonoBehaviour
                 }
                 if (icon._installaction)
                 {
-                    GroundColliderSwitch(icon.groundNum, false);
+                    if (icon.groundNum < groundList.Count)
+                    {
+                        GroundColliderSwitch(icon.groundNum, false);
+                    }
                     GameObject PanelClone = FindFromSeriesWithIcon(panelList[i], panelIconSeries, panelSeries);
                     PanelClone.transform.position = panelList[i].gameObject.transform.position;
 
@@ -120,6 +144,33 @@ public class ItemManager : MonoBehaviour
                     {
                         panelList[i].gameObject.SetActive(false);
                         panelList.RemoveAt(i);
+                    }
+                }
+            }
+        }
+    }
+
+    public void ExistItemCheck()
+    {
+        if (existItem.Count > 0)
+        {
+            foreach (GameObject Item in existItem)
+            {
+                var icon = Item.GetComponent<IconManager>();
+                if (icon._installaction)
+                {
+                    Debug.Log(icon.alreadyEditObject);
+                    if (icon.alreadyEditObject != null)
+                    {
+                        GameObject ItemIconClone = FindFromSeriesWithIcon(icon.alreadyEditObject, itemSeries, itemIconSeries);
+                        existItem.Remove(icon.alreadyEditObject.gameObject);
+                        Item.transform.parent = icon.alreadyEditObject.transform.parent;
+                        Destroy(icon.alreadyEditObject);  
+                        itemList.Insert(0, ItemIconClone);
+                    }
+                    else
+                    {
+                        Item.transform.parent = icon.itemSpace.transform;
                     }
                 }
             }
@@ -190,7 +241,7 @@ public class ItemManager : MonoBehaviour
 
     private void ItemReset(GameObject already)
     {
-        Debug.Log(already.transform.childCount);
+        //Debug.Log(already.transform.childCount);
         foreach(Transform itemSpace in already.transform)
         {
             if (itemSpace.childCount > 0)
@@ -198,6 +249,7 @@ public class ItemManager : MonoBehaviour
                 foreach (Transform item in itemSpace)
                 {
                     GameObject itemIconClone = FindFromSeriesWithIcon(item.gameObject, itemSeries, itemIconSeries);
+                    existItem.Remove(item.gameObject);
                     itemList.Insert(0, itemIconClone);
                 }
             }   
@@ -248,5 +300,23 @@ public class ItemManager : MonoBehaviour
         return Target;
     }
 
+    public void ExistPanelChack()
+    {
+        GameObject[] Panel = GameObject.FindGameObjectsWithTag("Panel");
+        List<GameObject> Panels = new List<GameObject>();
+        Panels.AddRange(Panel);
+        foreach(GameObject ExistPanel in Panels)
+        {
+            foreach(GameObject Ground in groundList)
+            {
+                if(ExistPanel.transform.position == Ground.transform.position)
+                {
+                    Ground.GetComponent<BoxCollider2D>().enabled = false;
+                    break;
+                }
+            }
+        }
+    }
 
+    
 }

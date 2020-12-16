@@ -165,6 +165,7 @@ public class PhaseManager : MonoBehaviour
         itemManager.AddReward();
         RewardPlateClone.SetActive(false);
         itemManager.GroundColliderSwitchAll(true);
+        itemManager.ExistPanelChack();
         _stageEditPhase = true;
     }
 }

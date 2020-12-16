@@ -137,3 +137,4 @@ MonoBehaviour:
   _draging: 0
   alreadyEditObject: {fileID: 0}
   itemSpace: {fileID: 0}
+  groundNum: 0
