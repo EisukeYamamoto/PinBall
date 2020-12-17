@@ -52,13 +52,19 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PMFind();
+        //PMFind();
         phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         holders_item = ItemHolders.GetComponent<ItemHoldersManager>();
         holders_area = AreaHolders.GetComponent<ItemHoldersManager>();
         _panelBottunPushed = true;
         appearPos = new Vector3(-315, -20, 0);
         hidePos = new Vector3(-800, -20, 0);
+        GameObject ItemIconClone = Instantiate(itemIconSeries[0]);
+        ItemIconClone.name = itemIconSeries[0].name;
+        itemList.Insert(0, ItemIconClone);
+        GameObject PanelIconClone = Instantiate(panelIconSeries[0]);
+        PanelIconClone.name = panelIconSeries[0].name;
+        panelList.Insert(0, PanelIconClone);
     }
 
     // Update is called once per frame
@@ -172,7 +178,8 @@ public class ItemManager : MonoBehaviour
                         GameObject ItemIconClone = FindFromSeriesWithIcon(icon.alreadyEditObject, itemSeries, itemIconSeries);
                         existItem.Remove(icon.alreadyEditObject.gameObject);
                         Item.transform.parent = icon.alreadyEditObject.transform.parent;
-                        Destroy(icon.alreadyEditObject);  
+                        Destroy(icon.alreadyEditObject);
+                        ListAddChack(itemList, holders_item.itemHolderList);
                         itemList.Insert(0, ItemIconClone);
                     }
                     else
@@ -216,10 +223,12 @@ public class ItemManager : MonoBehaviour
         {
             if(Reward.gameObject.tag == "PanelIcon")
             {
+                ListAddChack(panelList, holders_area.itemHolderList);
                 panelList.Insert(0, FindFromSeries(Reward, panelIconSeries));
             }
             else
             {
+                ListAddChack(itemList, holders_item.itemHolderList);
                 itemList.Insert(0, FindFromSeries(Reward, itemIconSeries));
             }
         }
@@ -258,6 +267,7 @@ public class ItemManager : MonoBehaviour
                 {
                     GameObject itemIconClone = FindFromSeriesWithIcon(item.gameObject, itemSeries, itemIconSeries);
                     existItem.Remove(item.gameObject);
+                    ListAddChack(itemList, holders_item.itemHolderList);
                     itemList.Insert(0, itemIconClone);
                 }
             }   
@@ -331,6 +341,15 @@ public class ItemManager : MonoBehaviour
             }
         }
     }
+
+    private void ListAddChack(List<GameObject> list, List<GameObject> holdlist)
+    {
+        if(list.Count >= holdlist.Count)
+        {
+            list.RemoveAt(list.Count - 1);
+        }
+    }
+
 
     
 }
