@@ -36,6 +36,7 @@ public class StagePanelEdit : MonoBehaviour
         {
             afterPos = vec / expand; // * shrink * shrink;
             GameObject itemSpaceClone = Instantiate(itemSpace);
+            itemSpaceClone.name = itemSpace.name;
             itemSpaceClone.transform.parent = this.transform;
             itemSpaceList.Add(itemSpaceClone);
             itemSpaceClone.transform.localScale *= shrink;
@@ -45,6 +46,21 @@ public class StagePanelEdit : MonoBehaviour
 
     void Update()
     {
+        if(this.gameObject.tag != "PanelIcon")
+        {
+            foreach (GameObject Space in itemSpaceList)
+            {
+                if (Space.transform.childCount > 0)
+                {
+                    Space.GetComponent<CircleCollider2D>().enabled = false;
+                }
+                else
+                {
+                    Space.GetComponent<CircleCollider2D>().enabled = true;
+                }
 
+            }
+        }
+        
     }
 }

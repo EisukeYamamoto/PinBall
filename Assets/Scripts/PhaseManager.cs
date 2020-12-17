@@ -6,6 +6,8 @@ using TMPro;
 
 public class PhaseManager : MonoBehaviour
 {
+    public int phaseMax;
+    public int phaseNow;
     public GameObject Player;
     public GameObject Mallet;
     private GameObject playerClone;
@@ -16,19 +18,28 @@ public class PhaseManager : MonoBehaviour
     public bool _pinballPhase;
     public bool _stageEditPhase;
 
-    public TextMeshProUGUI message = default;
+    public TextMeshProUGUI message;
     public float waitTime = 1.0f;
 
-    public TextMeshProUGUI phaseText = default;
+    public TextMeshProUGUI phaseText;
+    public TextMeshProUGUI phaseMaxText;
+    public TextMeshProUGUI phaseNowText;
 
     public GameObject ItemManager;
     ItemManager itemManager;
 
+    public GameObject RewardPlate;
+
     private bool _ready;
+    private bool _clear;
+
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Awake()
     {
+        phaseNow = 1;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _pinballPhase = false;
         _stageEditPhase = false;
         itemManager = ItemManager.GetComponent<ItemManager>();
@@ -44,20 +55,27 @@ public class PhaseManager : MonoBehaviour
         {
             if (_pinballPhase)
             {
-                PinballClear();
+                if (phaseNow < phaseMax)
+                {
+                    PinballClear();
+                }
+                else
+                {
+                    StageClear();
+                }
             }        
         }
-
         PhaseText();
     }
 
     public void PinballtoStageEdit()
     {
         _pinballPhase = false;
-        _stageEditPhase = true;
-
+        
         Destroy(playerClone);
         Destroy(malletClone);
+
+        StartCoroutine(RewardSelect());
     }
 
     public void StageEdittoPinball()
@@ -69,6 +87,11 @@ public class PhaseManager : MonoBehaviour
     public void PinballClear()
     {
         StartCoroutine(ToStageEdit());
+    }
+
+    public void StageClear()
+    {
+        StartCoroutine(StageComplete());
     }
 
     public void PinballStart()
@@ -96,6 +119,8 @@ public class PhaseManager : MonoBehaviour
             phaseText.text = "";
             PinballButton.SetActive(false);
         }
+        phaseMaxText.text = phaseMax.ToString();
+        phaseNowText.text = phaseNow.ToString();
     }
 
 
@@ -104,6 +129,8 @@ public class PhaseManager : MonoBehaviour
     {
         //yield return new WaitForEndOfFrame();
         _ready = true;
+        itemManager.GroundColliderSwitchAll(true);
+        itemManager.PanelColliderSwitch(true);
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
         malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
 
@@ -144,5 +171,40 @@ public class PhaseManager : MonoBehaviour
         message.text = "";
 
         PinballtoStageEdit();
+    }
+
+    IEnumerator StageComplete()
+    {
+        yield return new WaitForEndOfFrame();
+
+        message.text = "Complete!!!";
+        _pinballPhase = false;
+
+        yield return new WaitForSeconds(2.0f);
+
+        message.text = "";
+
+        gameManager.GameClear();
+    }
+
+    // 報酬選択処理
+    IEnumerator RewardSelect()
+    {
+        yield return new WaitForEndOfFrame();
+        itemManager.RewardListGenarate();
+
+        itemManager.GroundColliderSwitchAll(false);
+        itemManager.PanelColliderSwitch(false);
+        GameObject RewardPlateClone = Instantiate(RewardPlate);
+        RewardPlateClone.name = RewardPlate.name;
+        RewardManager rewardManager = RewardPlateClone.GetComponent<RewardManager>();
+
+        yield return new WaitUntil(() => rewardManager._selecting == false);
+        itemManager.AddReward();
+        RewardPlateClone.SetActive(false);
+        itemManager.GroundColliderSwitchAll(true);
+        itemManager.ExistPanelChack(false);
+        _stageEditPhase = true;
+        phaseNow += 1;
     }
 }

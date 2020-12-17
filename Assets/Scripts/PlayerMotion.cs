@@ -21,10 +21,13 @@ public class PlayerMotion : MonoBehaviour
     private float shotTimeNow = 0f;
     public bool _afterShot;
 
+    GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         Mallet = GameObject.FindGameObjectWithTag("Mallet");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         p_status = GetComponent<PlayerStatus>();
         m_motion = Mallet.GetComponent<MalletMotion>();
         _afterShot = false;
@@ -33,42 +36,46 @@ public class PlayerMotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // マウス位置をスクリーン座標からワールド座標へ
-        Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // 範囲制限
-        targetPos.x = Mathf.Clamp(targetPos.x, bounds.xMin, bounds.xMax);
-        targetPos.y = Mathf.Clamp(targetPos.y, bounds.yMin, bounds.yMax);
-
-        transform.position = targetPos;
-
-        if (_afterShot)
+        if (!gameManager.game_stop_flg)
         {
-            shotTimeNow += Time.deltaTime;
-            if (shotTimeNow >= shotTimeLimit)
+            // マウス位置をスクリーン座標からワールド座標へ
+            Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // 範囲制限
+            targetPos.x = Mathf.Clamp(targetPos.x, bounds.xMin, bounds.xMax);
+            targetPos.y = Mathf.Clamp(targetPos.y, bounds.yMin, bounds.yMax);
+
+            transform.position = targetPos;
+
+            if (_afterShot)
             {
-                _afterShot = false;
-                shotTimeNow = 0f;
+                shotTimeNow += Time.deltaTime;
+                if (shotTimeNow >= shotTimeLimit)
+                {
+                    _afterShot = false;
+                    shotTimeNow = 0f;
+                }
+            }
+
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (p_status._catching)
+                {
+                    Shot();
+                }
+                else
+                {
+                    p_status._preparingToCatch = true;
+                }
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                p_status._preparingToCatch = false;
+                p_status.Catch();
             }
         }
-
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (p_status._catching)
-            {
-                Shot();
-            }
-            else
-            {
-                p_status._preparingToCatch = true;
-            }  
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            p_status._preparingToCatch = false;
-            p_status.Catch();
-        }
+        
     }
 
     void Shot()
