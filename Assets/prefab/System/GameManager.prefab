@@ -43,13 +43,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6a3bfe90b954904a22035848f0d8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageName: []
+  stageSelectNum: 1
   fadeCanvasPrefab: {fileID: 4024866403986555897, guid: 7401fbd11671944aa975b01efef00aaa,
     type: 3}
   gameOverCanvasPrefab: {fileID: 0}
-  resultCanvasPrefab: {fileID: 0}
-  PauseCanvasPrefab: {fileID: 0}
+  resultCanvasPrefab: {fileID: 8751377499605859285, guid: 31c4094a0c61441b0926a1befdc39cb5,
+    type: 3}
+  resultCanvasPrefab_Final: {fileID: 8751377499605859285, guid: 6ae19dd0deee042e9960d48081625018,
+    type: 3}
+  PauseCanvasPrefab: {fileID: 5807720048647307858, guid: 0c9c7517b98384f919b4670406958521,
+    type: 3}
+  ConfilmCanvasPrefab_StageSelect: {fileID: 855994574734250246, guid: e0485190267194e8d854c989c766bf9f,
+    type: 3}
+  ConfilmCanvasPrefab_Pause_Restart: {fileID: 4323442296135135582, guid: 8014e7021f4a240778bc6008ab407096,
+    type: 3}
+  ConfilmCanvasPrefab_Pause_Back: {fileID: 4323442296135135582, guid: a9a240b1d7e3446d48979042a3206229,
+    type: 3}
+  ConfilmCanvasPrefab_NextStage: {fileID: 4323442296135135582, guid: 1538afa6b2c8742b6ba5b18ecb94086e,
+    type: 3}
   fadeWaitTime: 1
   game_stop_flg: 0
   pause_flg: 0
-  stage1FromBonus: {x: 0, y: 22, z: 362}

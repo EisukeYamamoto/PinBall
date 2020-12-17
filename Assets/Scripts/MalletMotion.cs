@@ -8,15 +8,14 @@ public class MalletMotion : MonoBehaviour
     PlayerStatus p_status;
 
     PhaseManager phase;
+    GameManager gameManager;
+    ScoreManager scoreManager;
 
     public Rigidbody2D rigidbody2D;
     Vector2 down;
 
     public Vector2 initPos;
     public float initSpeed = 200f;  // 最初のスピード
-
-    public int bumpNum = 0;
-    public int panelNum = 0;
 
     public float waitTimeLimit = 3f;  // 失敗したときのロスタイム
     private float waitTimeNow = 0f;
@@ -25,63 +24,86 @@ public class MalletMotion : MonoBehaviour
 
     private bool _start = false;
 
+    private bool _pause = false;
+
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         p_status = Player.GetComponent<PlayerStatus>();
         phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         down = new Vector2(0, -1);
-        bumpNum = 0;
         //MalletStart();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!_start && phase._pinballPhase && !phase._stageEditPhase)
+        if (!gameManager.game_stop_flg)
         {
-            MalletStart();
-            _start = true;
-        }
+            if (_pause)
+            {
+                _pause = false;
+                gameObject.GetComponent<Rigidbody2D>().Resume(this.gameObject);
+            }
 
-        if (_failure)
-        {
-            waitTimeNow += Time.deltaTime;
-            if(waitTimeNow >= waitTimeLimit)
+            if (!_start && phase._pinballPhase && !phase._stageEditPhase)
             {
                 MalletStart();
+                _start = true;
+            }
+
+            if (_failure)
+            {
+                waitTimeNow += Time.deltaTime;
+                if (waitTimeNow >= waitTimeLimit)
+                {
+                    MalletStart();
+                }
+            }
+
+            if (p_status._catching)
+            {
+                rigidbody2D.velocity = Vector2.zero;
+                Vector2 p_pos = Player.transform.position;
+                this.transform.position = p_pos + p_status.player2Mallet;
             }
         }
-
-        if (p_status._catching)
+        else
         {
-            rigidbody2D.velocity = Vector2.zero;
-            Vector2 p_pos = Player.transform.position;
-            this.transform.position = p_pos + p_status.player2Mallet;
+            if (!_pause)
+            {
+                _pause = true;
+                gameObject.GetComponent<Rigidbody2D>().Pause(this.gameObject);
+            }
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("DeadLine"))
+        if (!gameManager.game_stop_flg)
         {
-            if (phase._pinballPhase)
+            if (collision.gameObject.CompareTag("DeadLine"))
             {
-                _failure = true;
-                MalletReset();
-            }  
-        }
-        // 仮
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            if (phase._pinballPhase)
-            {
-                bumpNum += 1;
-                panelNum += 1;
+                if (phase._pinballPhase)
+                {
+                    _failure = true;
+                    MalletReset();
+                }
             }
-        }
+            // 仮
+            if (collision.gameObject.CompareTag("Wall"))
+            {
+                if (phase._pinballPhase)
+                {
+                    scoreManager.score += 100;
+                }
+            }
+        }   
     }
 
     // マレットの開始処理

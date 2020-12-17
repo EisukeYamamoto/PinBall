@@ -21,6 +21,7 @@ public class SelectManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        this.transform.position = new Vector2(-interval * (gameManager.stageSelectNum - 1), 0);
         int i = 0;
         foreach(string StageName in stageList)
         {

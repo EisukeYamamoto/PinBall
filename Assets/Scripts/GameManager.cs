@@ -12,14 +12,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     //[SerializeField]
     //string[] stageName; //ステージ名
-    [SerializeField]
-    GameObject fadeCanvasPrefab = default;
-    [SerializeField]
-    GameObject gameOverCanvasPrefab = default;
-    [SerializeField]
-    GameObject resultCanvasPrefab = default;
-    [SerializeField]
-    GameObject PauseCanvasPrefab = default;
+    public GameObject fadeCanvasPrefab;
+    public GameObject gameOverCanvasPrefab;
+    public GameObject resultCanvasPrefab;
+    public GameObject resultCanvasPrefab_Final;
+    public GameObject PauseCanvasPrefab;
+    public GameObject ConfilmCanvasPrefab_StageSelect;
+    public GameObject ConfilmCanvasPrefab_Pause_Restart;
+    public GameObject ConfilmCanvasPrefab_Pause_Back;
+    public GameObject ConfilmCanvasPrefab_NextStage;
+
     [SerializeField]
     float fadeWaitTime = 1.0f; //フェード時の待ち時間
 
@@ -28,6 +30,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     GameObject gameOverCanvasClone;
     GameObject resultCanvasClone;
     GameObject PauseCanvasClone;
+    GameObject Confilm;
     //GameObject gameStartCanvas;
     // Target target_image;
 
@@ -38,6 +41,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //public AudioClip negative_se;
     //public AudioClip pause_se;
 
+    List<string> stageList;
     Button Pause_button;
     Button[] buttons;
     //
@@ -84,14 +88,44 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             case "StageSelect":
                 currentStageNum = 1;
+                stageList = GameObject.Find("SelectManager").GetComponent<SelectManager>().stageList;
+                game_stop_flg = false;
                 SelectStart();
                 break;
-            case "GrassStage":
+            case "Stage1":
                 currentStageNum = 2;
                 game_stop_flg = false;
-                //pause_flg = true;
-                //Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
-                //Pause_button.onClick.AddListener(Pause);
+                pause_flg = true;
+                Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
+                Pause_button.onClick.AddListener(Pause);
+                break;
+            case "Stage2":
+                currentStageNum = 3;
+                game_stop_flg = false;
+                pause_flg = true;
+                Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
+                Pause_button.onClick.AddListener(Pause);
+                break;
+            case "Stage3":
+                currentStageNum = 4;
+                game_stop_flg = false;
+                pause_flg = true;
+                Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
+                Pause_button.onClick.AddListener(Pause);
+                break;
+            case "Stage4":
+                currentStageNum = 5;
+                game_stop_flg = false;
+                pause_flg = true;
+                Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
+                Pause_button.onClick.AddListener(Pause);
+                break;
+            case "Stage5":
+                currentStageNum = 6;
+                game_stop_flg = false;
+                pause_flg = true;
+                Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
+                Pause_button.onClick.AddListener(Pause);
                 break;
             default:
                 break;
@@ -109,6 +143,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         // SE
         //audioSource.PlayOneShot(start_se);
+        stageSelectNum += 1;
 
         //コルーチンを実行
         StartCoroutine(WaitForLoadScene(currentStageNum + 1));
@@ -163,6 +198,24 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     }
 
+    public void GameClear()
+    {
+        game_stop_flg = true;
+        pause_flg = false;
+
+        if (stageSelectNum < stageList.Count)
+        {
+            resultCanvasClone = Instantiate(resultCanvasPrefab);
+            resultCanvasClone.name = resultCanvasPrefab.name;
+        }
+        else
+        {
+            resultCanvasClone = Instantiate(resultCanvasPrefab_Final);
+            resultCanvasClone.name = resultCanvasPrefab_Final.name;
+        }
+        
+    }
+
     public void Result()
     {
         //キャラやカメラの移動を停止させる
@@ -201,8 +254,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
             //ボタンにイベント設定
             buttons[0].onClick.AddListener(Retry_Pause);
-            buttons[1].onClick.AddListener(Restart);
-            buttons[2].onClick.AddListener(Return_Pause);
+            buttons[1].onClick.AddListener(ConfilmPauseRestart);
+            buttons[2].onClick.AddListener(ConfilmPauseBack);
         }
 
     }
@@ -228,13 +281,73 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         buttons = gameSelectCanvas.GetComponentsInChildren<Button>();
 
         //ボタンにイベント設定
-        buttons[0].onClick.AddListener(GoToStage);
+        buttons[0].onClick.AddListener(ConfilmStageSelect);
         buttons[1].onClick.AddListener(Return);
+    }
+
+    public void ConfilmStageSelect()
+    {
+        game_stop_flg = true;
+        Confilm = Instantiate(ConfilmCanvasPrefab_StageSelect);
+
+        Button[] buttons = Confilm.GetComponentsInChildren<Button>();
+
+        //ボタンにイベント設定
+        buttons[0].onClick.AddListener(GoToStage);
+        buttons[1].onClick.AddListener(SelectNo);
+    }
+
+    public void ConfilmPauseRestart()
+    {
+        game_stop_flg = true;
+        Confilm = Instantiate(ConfilmCanvasPrefab_Pause_Restart);
+
+        Button[] buttons = Confilm.GetComponentsInChildren<Button>();
+
+        //ボタンにイベント設定
+        buttons[0].onClick.AddListener(Restart);
+        buttons[1].onClick.AddListener(SelectNo_2);
+    }
+
+    public void ConfilmPauseBack()
+    {
+        game_stop_flg = true;
+        Confilm = Instantiate(ConfilmCanvasPrefab_Pause_Back);
+
+        Button[] buttons = Confilm.GetComponentsInChildren<Button>();
+
+        //ボタンにイベント設定
+        buttons[0].onClick.AddListener(Return_Pause);
+        buttons[1].onClick.AddListener(SelectNo_2);
+    }
+
+    public void ConfilmNextStage()
+    {
+        game_stop_flg = true;
+        Confilm = Instantiate(ConfilmCanvasPrefab_NextStage);
+
+        Button[] buttons = Confilm.GetComponentsInChildren<Button>();
+
+        //ボタンにイベント設定
+        buttons[0].onClick.AddListener(NextStage);
+        buttons[1].onClick.AddListener(SelectNo_2);
     }
 
     public void GoToStage()
     {
+        Destroy(Confilm);
         MoveToStage(currentStageNum + stageSelectNum);
+    }
+
+    public void SelectNo()
+    {
+        Destroy(Confilm);
+        game_stop_flg = false;
+    }
+
+    public void SelectNo_2()
+    {
+        Destroy(Confilm);
     }
 
     //リトライ
@@ -285,6 +398,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void Restart()
     {
         Destroy(PauseCanvasClone);
+        Destroy(Confilm);
         // SE
         //audioSource.PlayOneShot(positive_se);
         MoveToStage(currentStageNum);
@@ -304,22 +418,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void Return_Pause()
     {
         Destroy(PauseCanvasClone);
-
+        Destroy(Confilm);
         // SE
         //audioSource.PlayOneShot(negative_se);
 
-        currentStageNum = 0;
-        MoveToStage(currentStageNum);
+        MoveToStage(1);
     }
-
-    public void Bonus_Load_Return()
-    {
-        game_stop_flg = true;
-        pause_flg = false;
-
-        MoveToStage(currentStageNum);
-    }
-
 
     //ゲーム終了
     public void ExitGame()
