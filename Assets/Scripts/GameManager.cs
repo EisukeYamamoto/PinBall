@@ -149,6 +149,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         StartCoroutine(WaitForLoadScene(currentStageNum + 1));
     }
 
+    //次のステージに進む処理
+    public void GotoSelectStage()
+    {
+        // SE
+        //audioSource.PlayOneShot(start_se);
+
+        //コルーチンを実行
+        StartCoroutine(WaitForLoadScene(currentStageNum + 1));
+    }
+
     //任意のステージに移動する処理
     public void MoveToStage(int stageNum)
     {
@@ -268,7 +278,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         buttons = gameStartCanvas.GetComponentsInChildren<Button>();
 
         //ボタンにイベント設定
-        buttons[0].onClick.AddListener(NextStage);
+        buttons[0].onClick.AddListener(GotoSelectStage);
         buttons[1].onClick.AddListener(ExitGame);
 
     }
