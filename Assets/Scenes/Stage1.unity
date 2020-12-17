@@ -987,6 +987,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseMax: 5
   phaseNow: 0
+  targetPos:
+  - {x: 0, y: 4}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 3}
+  Target: {fileID: 7922880631468474908, guid: 3290425b402c1452eb6f3582e1ed3006, type: 3}
   Player: {fileID: 1458913000842467446, guid: 3e993446f7fbf4433a8fe13c9b9306fe, type: 3}
   Mallet: {fileID: 866681893784884604, guid: dbd7338ffb8c448e7a9f4a61a37b557a, type: 3}
   PinballButton: {fileID: 1595906720}

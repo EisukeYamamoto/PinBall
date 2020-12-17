@@ -10,8 +10,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int currentStageNum = 0; //現在のステージ番号（0始まり）
     public int stageSelectNum = 1;
 
-    //[SerializeField]
-    //string[] stageName; //ステージ名
+    public List<string> stageList;
     public GameObject fadeCanvasPrefab;
     public GameObject gameOverCanvasPrefab;
     public GameObject resultCanvasPrefab;
@@ -41,7 +40,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //public AudioClip negative_se;
     //public AudioClip pause_se;
 
-    List<string> stageList;
     Button Pause_button;
     Button[] buttons;
     //
@@ -88,12 +86,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             case "StageSelect":
                 currentStageNum = 1;
-                stageList = GameObject.Find("SelectManager").GetComponent<SelectManager>().stageList;
                 game_stop_flg = false;
                 SelectStart();
                 break;
             case "Stage1":
                 currentStageNum = 2;
+                stageSelectNum = 1;
                 game_stop_flg = false;
                 pause_flg = true;
                 Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
@@ -101,6 +99,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             case "Stage2":
                 currentStageNum = 3;
+                stageSelectNum = 2;
                 game_stop_flg = false;
                 pause_flg = true;
                 Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
@@ -108,6 +107,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             case "Stage3":
                 currentStageNum = 4;
+                stageSelectNum = 3;
                 game_stop_flg = false;
                 pause_flg = true;
                 Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
@@ -115,6 +115,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             case "Stage4":
                 currentStageNum = 5;
+                stageSelectNum = 4;
                 game_stop_flg = false;
                 pause_flg = true;
                 Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();
@@ -122,6 +123,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 break;
             case "Stage5":
                 currentStageNum = 6;
+                stageSelectNum = 5;
                 game_stop_flg = false;
                 pause_flg = true;
                 Pause_button = GameObject.Find("PauseButton").GetComponent<Button>();

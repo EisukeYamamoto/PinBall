@@ -8,6 +8,10 @@ public class PhaseManager : MonoBehaviour
 {
     public int phaseMax;
     public int phaseNow;
+    public Vector2[] targetPos;
+    public GameObject Target;
+    GameObject targetClone;
+    HPSystem targetHP;
     public GameObject Player;
     public GameObject Mallet;
     private GameObject playerClone;
@@ -47,6 +51,7 @@ public class PhaseManager : MonoBehaviour
         //PinballStart();
         _stageEditPhase = true;
         _pinballPhase = false;
+        AppearTarget();
     }
 
     // Update is called once per frame
@@ -123,6 +128,14 @@ public class PhaseManager : MonoBehaviour
         }
         phaseMaxText.text = phaseMax.ToString();
         phaseNowText.text = phaseNow.ToString();
+    }
+
+    public void AppearTarget()
+    {
+        targetClone = Instantiate(Target);
+        targetClone.name = Target.name;
+        targetHP = targetClone.GetComponent<HPSystem>();
+        targetClone.transform.position = targetPos[phaseNow - 1];
     }
 
 
@@ -208,5 +221,6 @@ public class PhaseManager : MonoBehaviour
         itemManager.ExistPanelChack(false);
         _stageEditPhase = true;
         phaseNow += 1;
+        AppearTarget();
     }
 }

@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class SelectManager : MonoBehaviour
 {
-    public List<string> stageList;
+    private List<string> stageList;
     public GameObject StagePanel;
     public GameObject ArrowButton;
     public TextMeshProUGUI StageName;
@@ -21,6 +21,7 @@ public class SelectManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        stageList = gameManager.stageList;
         this.transform.position = new Vector2(-interval * (gameManager.stageSelectNum - 1), 0);
         int i = 0;
         foreach(string StageName in stageList)

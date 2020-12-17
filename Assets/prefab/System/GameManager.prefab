@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageSelectNum: 1
+  stageList:
+  - Stage1
+  - Stage2
+  - Stage3
+  - Stage4
+  - Stage5
   fadeCanvasPrefab: {fileID: 4024866403986555897, guid: 7401fbd11671944aa975b01efef00aaa,
     type: 3}
   gameOverCanvasPrefab: {fileID: 0}
