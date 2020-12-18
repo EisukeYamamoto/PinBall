@@ -8,10 +8,18 @@ public class PhaseManager : MonoBehaviour
 {
     public int phaseMax;
     public int phaseNow;
+    [Header("ターゲットリスト")]
     public Vector2[] targetPos;
-    public GameObject Target;
+    public List<GameObject> TargetList;
+    public List<GameObject> TargetIconList;
+    private Vector2 targetIconPos = new Vector2(6.95f, -1);
     GameObject targetClone;
+    GameObject targetIcon;
     HPSystem targetHP;
+    private float hpMax;
+    private float hpNow;
+    public Slider slider;
+    [Header("プレイヤー/マレット")]
     public GameObject Player;
     public GameObject Mallet;
     private GameObject playerClone;
@@ -51,7 +59,7 @@ public class PhaseManager : MonoBehaviour
         //PinballStart();
         _stageEditPhase = true;
         _pinballPhase = false;
-        AppearTarget();
+        AppearTarget(0);
     }
 
     // Update is called once per frame
@@ -73,6 +81,13 @@ public class PhaseManager : MonoBehaviour
             }        
         }
         PhaseText();
+        if (targetClone != null)
+        {
+            hpNow = targetHP.hp;
+            slider.value = hpNow / hpMax;
+        }
+
+        
     }
 
     public void PinballtoStageEdit()
@@ -130,11 +145,21 @@ public class PhaseManager : MonoBehaviour
         phaseNowText.text = phaseNow.ToString();
     }
 
-    public void AppearTarget()
+    public void AppearTarget(int targetnum)
     {
-        targetClone = Instantiate(Target);
-        targetClone.name = Target.name;
+        targetClone = Instantiate(TargetList[targetnum]);
+        targetClone.name = TargetList[targetnum].name;
+        if(targetIcon != null)
+        {
+            Destroy(targetIcon);
+        }
+        targetIcon = Instantiate(TargetIconList[targetnum]);
+        targetIcon.name = TargetIconList[targetnum].name;
+        targetIcon.transform.position = targetIconPos;
         targetHP = targetClone.GetComponent<HPSystem>();
+        hpMax = targetHP.hp;
+        hpNow = hpMax;
+        slider.value = 1;
         targetClone.transform.position = targetPos[phaseNow - 1];
     }
 
@@ -221,6 +246,6 @@ public class PhaseManager : MonoBehaviour
         itemManager.ExistPanelChack(false);
         _stageEditPhase = true;
         phaseNow += 1;
-        AppearTarget();
+        AppearTarget(0);
     }
 }

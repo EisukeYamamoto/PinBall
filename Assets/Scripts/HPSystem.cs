@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class HPSystem : MonoBehaviour
 {
-    public int hp;
+    public float hp;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,10 @@ public class HPSystem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Mallet"))
         {
-            hp -= 1;
-            if(hp <= 0)
+            float afterHp = hp - 1;
+            DOTween.To(() => hp, num => hp = num, afterHp, 0.1f);
+            //hp -= 1;
+            if(afterHp <= 0)
             {
                 if(this.gameObject.name == "Target")
                 {
