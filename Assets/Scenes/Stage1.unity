@@ -4661,6 +4661,7 @@ MonoBehaviour:
   canSelectNum: 2
   rewardList: []
   selectList: []
+  distanceLimit: 2
 --- !u!4 &1932367240
 Transform:
   m_ObjectHideFlags: 0

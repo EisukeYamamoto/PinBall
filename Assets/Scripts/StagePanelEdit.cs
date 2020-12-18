@@ -14,9 +14,16 @@ public class StagePanelEdit : MonoBehaviour
     private Vector2 parent;
     private Vector2 afterPos;
 
+    PhaseManager phase;
+    ItemManager item;
+    private float distanceLimit;
+
     // Start is called before the first frame update
     void Start()
     {
+        phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
+        item = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        distanceLimit = item.distanceLimit;
         if(this.gameObject.tag == "PanelIcon")
         {
             shrink = 0.67f;
@@ -50,7 +57,8 @@ public class StagePanelEdit : MonoBehaviour
         {
             foreach (GameObject Space in itemSpaceList)
             {
-                if (Space.transform.childCount > 0)
+                float distance = Vector2.Distance(Space.transform.position, phase.targetPos[phase.phaseNow - 1]);
+                if (Space.transform.childCount > 0 || distance < distanceLimit)
                 {
                     Space.GetComponent<CircleCollider2D>().enabled = false;
                 }

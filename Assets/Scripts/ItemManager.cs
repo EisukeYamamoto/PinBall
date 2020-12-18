@@ -45,15 +45,20 @@ public class ItemManager : MonoBehaviour
     public List<GameObject> rewardList = new List<GameObject>();
     public List<GameObject> selectList = new List<GameObject>();
 
+    [Header("ターゲットとの最小距離(これより近いとリストに戻す)")]
+    public float distanceLimit;
+
     private Vector2 hidePos;
     private Vector2 appearPos;
 
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         //PMFind();
         phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         holders_item = ItemHolders.GetComponent<ItemHoldersManager>();
         holders_area = AreaHolders.GetComponent<ItemHoldersManager>();
         _panelBottunPushed = true;
@@ -163,9 +168,12 @@ public class ItemManager : MonoBehaviour
     {
         if (existItem.Count > 0)
         {
-            foreach (GameObject Item in existItem)
+            Vector2 targetPos = phase.targetPos[phase.phaseNow - 1];
+            for (int i = existItem.Count - 1; i >= 0; i--)
             {
+                GameObject Item = existItem[i];
                 var icon = Item.GetComponent<IconManager>();
+                float distance = Vector2.Distance(Item.transform.position, targetPos);
                 if (!icon._draging)
                 {
                     Item.transform.localPosition = new Vector2(0, 0);
@@ -187,6 +195,14 @@ public class ItemManager : MonoBehaviour
                         Item.transform.parent = icon.itemSpace.transform;
                         
                     }
+                }
+                if (distance < distanceLimit)
+                {
+                    GameObject ItemIconClone = FindFromSeriesWithIcon(Item, itemSeries, itemIconSeries);
+                    existItem.Remove(Item);
+                    Destroy(Item);
+                    ListAddChack(itemList, holders_item.itemHolderList);
+                    itemList.Insert(0, ItemIconClone);
                 }
             }
         }
@@ -346,6 +362,7 @@ public class ItemManager : MonoBehaviour
     {
         if(list.Count >= holdlist.Count)
         {
+            list[list.Count - 1].SetActive(false);
             list.RemoveAt(list.Count - 1);
         }
     }
