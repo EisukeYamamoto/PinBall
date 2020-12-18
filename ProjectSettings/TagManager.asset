@@ -18,6 +18,7 @@ TagManager:
   - PanelIcon
   - Panel
   - ItemIcon
+  - EnemyHole
   layers:
   - Default
   - TransparentFX
