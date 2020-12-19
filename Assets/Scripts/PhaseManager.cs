@@ -210,6 +210,7 @@ public class PhaseManager : MonoBehaviour
 
         message.text = "Great!!";
         _pinballPhase = false;
+        enemyManager.EnemyClear();
 
         yield return new WaitForSeconds(2.0f);
 
@@ -224,6 +225,7 @@ public class PhaseManager : MonoBehaviour
 
         message.text = "Complete!!!";
         _pinballPhase = false;
+        enemyManager.EnemyClear();
 
         yield return new WaitForSeconds(2.0f);
 

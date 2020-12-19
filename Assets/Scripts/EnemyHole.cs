@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemyHole : MonoBehaviour
 {
+    public float initTime;
     public float appearTime;
     public List<GameObject> enemyList = new List<GameObject>();
+    EnemyHoleManager enemyManager;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,8 @@ public class EnemyHole : MonoBehaviour
 
     void OnEnable()
     {
-        
+        enemyManager = transform.parent.GetComponent<EnemyHoleManager>();
+        InvokeRepeating("EnemyGanarate", initTime, appearTime);
     }
 
     void EnemyGanarate()
@@ -29,6 +32,7 @@ public class EnemyHole : MonoBehaviour
         int enemyNum = (int)Random.Range(0, enemyList.Count);
         GameObject Enemy = Instantiate(enemyList[enemyNum]);
         Enemy.name = enemyList[enemyNum].name;
+        enemyManager.existEnemyList.Add(Enemy);
         Enemy.transform.position = this.transform.position;
     }
 }
