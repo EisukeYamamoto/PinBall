@@ -886,6 +886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearTime: 0
+  enemyList: []
 --- !u!4 &318589489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8928951963051907366, guid: 4198d3f3f3b544188bd1f3eb3e97bd30,
@@ -921,7 +923,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283a6ab747cc44e418a200b1289de8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList: []
+  enemyManageList:
+  - phaseNumber: "\u30D5\u30A7\u30FC\u30BA1"
+    holeInfomation:
+    - holeNumber: 0
+      appearTime: 0
+    - holeNumber: 0
+      appearTime: 0
+    - holeNumber: 0
+      appearTime: 0
+    enemyList: []
+  - phaseNumber: "\u30D5\u30A7\u30FC\u30BA2"
+    holeInfomation: []
+    enemyList: []
+  - phaseNumber: "\u30D5\u30A7\u30FC\u30BA3"
+    holeInfomation: []
+    enemyList: []
+  - phaseNumber: "\u30D5\u30A7\u30FC\u30BA4"
+    holeInfomation: []
+    enemyList: []
+  - phaseNumber: "\u30D5\u30A7\u30FC\u30BA5"
+    holeInfomation: []
+    enemyList: []
 --- !u!4 &323838816
 Transform:
   m_ObjectHideFlags: 0
@@ -1139,6 +1162,7 @@ MonoBehaviour:
   phaseMaxText: {fileID: 2113839838}
   phaseNowText: {fileID: 228992272}
   ItemManager: {fileID: 1932367238}
+  EnemyManager: {fileID: 323838814}
   RewardPlate: {fileID: 2901244600881386197, guid: f8ef2f3e79d1f44e5963e6042cd87fd2,
     type: 3}
 --- !u!4 &394376012
@@ -1555,6 +1579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearTime: 0
+  enemyList: []
 --- !u!1 &484139692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8431691873449464468, guid: 4005063c7ef8e446e89938e2169e68f9,
@@ -2508,6 +2534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearTime: 0
+  enemyList: []
 --- !u!1001 &883541145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3111,6 +3139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearTime: 0
+  enemyList: []
 --- !u!1 &1128953515
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,6 +3497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearTime: 0
+  enemyList: []
 --- !u!1 &1210599028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,6 +3703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearTime: 0
+  enemyList: []
 --- !u!1001 &1309018308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4692,7 +4726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 312.5, y: -50.000015}
+  m_AnchoredPosition: {x: 312.5, y: -50}
   m_SizeDelta: {x: -675, y: -320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1650361639
@@ -5007,6 +5041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearTime: 0
+  enemyList: []
 --- !u!1 &1808776987
 GameObject:
   m_ObjectHideFlags: 0

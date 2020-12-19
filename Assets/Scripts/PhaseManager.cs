@@ -40,6 +40,9 @@ public class PhaseManager : MonoBehaviour
     public GameObject ItemManager;
     ItemManager itemManager;
 
+    public GameObject EnemyManager;
+    EnemyHoleManager enemyManager;
+
     public GameObject RewardPlate;
 
     private bool _ready;
@@ -55,6 +58,7 @@ public class PhaseManager : MonoBehaviour
         _pinballPhase = false;
         _stageEditPhase = false;
         itemManager = ItemManager.GetComponent<ItemManager>();
+        enemyManager = EnemyManager.GetComponent<EnemyHoleManager>();
         _ready = false;
         //PinballStart();
         _stageEditPhase = true;
@@ -173,6 +177,7 @@ public class PhaseManager : MonoBehaviour
         itemManager.PanelColliderSwitch(true);
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
         malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
+        enemyManager.EnemyHoleSets();
 
         itemManager.PMFind();
 
@@ -235,6 +240,7 @@ public class PhaseManager : MonoBehaviour
 
         itemManager.GroundColliderSwitchAll(false);
         itemManager.PanelColliderSwitch(false);
+        enemyManager.EnemyHoleReset();
         GameObject RewardPlateClone = Instantiate(RewardPlate);
         RewardPlateClone.name = RewardPlate.name;
         RewardManager rewardManager = RewardPlateClone.GetComponent<RewardManager>();
