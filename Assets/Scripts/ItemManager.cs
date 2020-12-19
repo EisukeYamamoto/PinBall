@@ -49,7 +49,9 @@ public class ItemManager : MonoBehaviour
     public float distanceLimit;
 
     private Vector2 hidePos;
-    private Vector2 appearPos;
+
+    [Header("出現するリストの位置")]
+    public Vector2 appearPos;
 
     GameManager gameManager;
 
@@ -62,7 +64,7 @@ public class ItemManager : MonoBehaviour
         holders_item = ItemHolders.GetComponent<ItemHoldersManager>();
         holders_area = AreaHolders.GetComponent<ItemHoldersManager>();
         _panelBottunPushed = true;
-        appearPos = new Vector3(-315, -20, 0);
+        //appearPos = new Vector3(-315, -20, 0);
         hidePos = new Vector3(-800, -20, 0);
         GameObject ItemIconClone = Instantiate(itemIconSeries[0]);
         ItemIconClone.name = itemIconSeries[0].name;
