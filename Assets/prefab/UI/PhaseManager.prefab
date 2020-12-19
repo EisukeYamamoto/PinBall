@@ -1916,7 +1916,7 @@ MonoBehaviour:
   phaseMaxText: {fileID: 5271364732256046549}
   phaseNowText: {fileID: 5271364734140828187}
   ItemManager: {fileID: 0}
-  RewardPlate: {fileID: 2901244600881386197, guid: f8ef2f3e79d1f44e5963e6042cd87fd2,
+  RewardPlate: {fileID: 2556932901419144347, guid: 3c7a40137337113499b21cba19e21680,
     type: 3}
 --- !u!1 &5271364733809883800
 GameObject:
