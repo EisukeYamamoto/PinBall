@@ -373,18 +373,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyManageList:
-  - phaseNumber: 
+  - phaseNumber: phase1
+    holeInfomation:
+    - holeNumber: 1
+      initTime: 4
+      appearTime: 3
+    - holeNumber: 4
+      initTime: 4
+      appearTime: 3
+    enemyList: []
+  - phaseNumber: phase2
     holeInfomation: []
     enemyList: []
-  - phaseNumber: 
+  - phaseNumber: phase3
     holeInfomation: []
     enemyList: []
-  - phaseNumber: 
+  - phaseNumber: phase4
     holeInfomation: []
     enemyList: []
-  - phaseNumber: 
+  - phaseNumber: phase5
     holeInfomation: []
     enemyList: []
-  - phaseNumber: 
-    holeInfomation: []
-    enemyList: []
+  existEnemyList: []
+  enemyTargetList: {fileID: 0}

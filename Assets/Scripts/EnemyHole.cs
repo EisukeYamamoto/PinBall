@@ -8,6 +8,7 @@ public class EnemyHole : MonoBehaviour
     public float appearTime;
     public List<GameObject> enemyList = new List<GameObject>();
     EnemyHoleManager enemyManager;
+    int targetNum;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,8 @@ public class EnemyHole : MonoBehaviour
     void OnEnable()
     {
         enemyManager = transform.parent.GetComponent<EnemyHoleManager>();
-        InvokeRepeating("EnemyGanarate", initTime, appearTime);
+        //InvokeRepeating(nameof(EnemyGanarate), initTime, appearTime);
+        StartCoroutine(Repeat());
     }
 
     void EnemyGanarate()
@@ -32,7 +34,44 @@ public class EnemyHole : MonoBehaviour
         int enemyNum = (int)Random.Range(0, enemyList.Count);
         GameObject Enemy = Instantiate(enemyList[enemyNum]);
         Enemy.name = enemyList[enemyNum].name;
-        enemyManager.existEnemyList.Add(Enemy);
         Enemy.transform.position = this.transform.position;
+        EnemySystem system = Enemy.GetComponent<EnemySystem>();
+        system.initPos = this.transform.position;
+
+        switch (this.gameObject.name)
+        {
+            case "EnemyHole_Middle_Left":
+                targetNum = (int)Random.Range(4, enemyManager.enemyTargetList.EnemyTargetList.Count);
+                break;
+            case "EnemyHole_Above_Left":
+                targetNum = (int)Random.Range(3, enemyManager.enemyTargetList.EnemyTargetList.Count);
+                break;
+            case "EnemyHole_Middle_Right":
+                targetNum = (int)Random.Range(0, 5);
+                break;
+            case "EnemyHole_Above_Right":
+                targetNum = (int)Random.Range(0, 6);
+                break;
+            default:
+                targetNum = (int)Random.Range(0, enemyManager.enemyTargetList.EnemyTargetList.Count);
+                break;
+        }
+           
+        system.targetPos = enemyManager.enemyTargetList.EnemyTargetList[targetNum].transform.position;
+        
+        enemyManager.existEnemyList.Add(Enemy);
+        
+    }
+
+    IEnumerator Repeat()
+    {
+        yield return new WaitForSeconds(initTime);
+        while (true)
+        {
+            EnemyGanarate();
+
+            yield return new WaitForSeconds(appearTime);
+        }
+
     }
 }

@@ -210,6 +210,7 @@ public class PhaseManager : MonoBehaviour
 
         message.text = "Great!!";
         _pinballPhase = false;
+        enemyManager.EnemyHoleReset();
         enemyManager.EnemyClear();
 
         yield return new WaitForSeconds(2.0f);
@@ -225,6 +226,7 @@ public class PhaseManager : MonoBehaviour
 
         message.text = "Complete!!!";
         _pinballPhase = false;
+        enemyManager.EnemyHoleReset();
         enemyManager.EnemyClear();
 
         yield return new WaitForSeconds(2.0f);
@@ -242,7 +244,6 @@ public class PhaseManager : MonoBehaviour
 
         itemManager.GroundColliderSwitchAll(false);
         itemManager.PanelColliderSwitch(false);
-        enemyManager.EnemyHoleReset();
         GameObject RewardPlateClone = Instantiate(RewardPlate);
         RewardPlateClone.name = RewardPlate.name;
         RewardManager rewardManager = RewardPlateClone.GetComponent<RewardManager>();

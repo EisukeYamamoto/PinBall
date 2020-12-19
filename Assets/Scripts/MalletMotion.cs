@@ -14,6 +14,8 @@ public class MalletMotion : MonoBehaviour
     public Rigidbody2D rigidbody2D;
     Vector2 down;
 
+    CircleCollider2D collider;
+
     public Vector2 initPos;
     public float initSpeed = 200f;  // 最初のスピード
 
@@ -35,6 +37,7 @@ public class MalletMotion : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CircleCollider2D>();
         down = new Vector2(0, -1);
         //MalletStart();
     }
@@ -111,6 +114,7 @@ public class MalletMotion : MonoBehaviour
     {
         _failure = false;
         waitTimeNow = 0f;
+        collider.enabled = true;
         rigidbody2D.AddForce(down * initSpeed);
     }
 
@@ -119,6 +123,7 @@ public class MalletMotion : MonoBehaviour
     {
         waitTimeNow = 0f;
         rigidbody2D.velocity = Vector2.zero;
+        collider.enabled = false;
         this.transform.position = initPos;
         this.transform.rotation = Quaternion.identity;
     }

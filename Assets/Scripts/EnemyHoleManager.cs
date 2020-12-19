@@ -31,6 +31,7 @@ public class EnemyHoleManager : MonoBehaviour
     PhaseManager phase;
     List<GameObject> enemyHolesList = new List<GameObject>();
     public List<GameObject> existEnemyList = new List<GameObject>();
+    public DeadLineTarget enemyTargetList;
     
     // Start is called before the first frame update
     void Start()
