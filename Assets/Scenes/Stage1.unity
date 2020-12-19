@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyManageList: []
   existEnemyList: []
+  enemyTargetList: {fileID: 0}
 --- !u!4 &323838816
 Transform:
   m_ObjectHideFlags: 0
@@ -580,6 +581,18 @@ MonoBehaviour:
   initTime: 5
   appearTime: 0
   enemyList: []
+--- !u!114 &1035464957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3607248099776783971, guid: 877d5556a1f9748719a4f58664008a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 6804452268463577539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c5783679ea04be688d06091e3f0445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1102902925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1065,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648218578371032346, guid: 883b1ec9e5f6a480baec0087bd973abe,
+        type: 3}
+      propertyPath: enemyManageList.Array.data[0].enemyList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648218578371032346, guid: 883b1ec9e5f6a480baec0087bd973abe,
+        type: 3}
+      propertyPath: enemyTargetList
+      value: 
+      objectReference: {fileID: 1035464957}
+    - target: {fileID: 1648218578371032346, guid: 883b1ec9e5f6a480baec0087bd973abe,
+        type: 3}
+      propertyPath: enemyManageList.Array.data[0].enemyList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7326417686326490132, guid: fa4defa5c5b1442f2ac25671bb724da3,
+        type: 3}
+    - target: {fileID: 1648218578371032346, guid: 883b1ec9e5f6a480baec0087bd973abe,
+        type: 3}
+      propertyPath: enemyManageList.Array.data[0].holeInfomation.Array.data[0].appearTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648218578371032346, guid: 883b1ec9e5f6a480baec0087bd973abe,
+        type: 3}
+      propertyPath: enemyManageList.Array.data[0].holeInfomation.Array.data[1].appearTime
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1648218578371032347, guid: 883b1ec9e5f6a480baec0087bd973abe,
         type: 3}
