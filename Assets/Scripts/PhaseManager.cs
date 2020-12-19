@@ -12,7 +12,7 @@ public class PhaseManager : MonoBehaviour
     public Vector2[] targetPos;
     public List<GameObject> TargetList;
     public List<GameObject> TargetIconList;
-    private Vector2 targetIconPos = new Vector2(6.95f, -1);
+    public Vector2 targetIconPos ;
     GameObject targetClone;
     GameObject targetIcon;
     HPSystem targetHP;
