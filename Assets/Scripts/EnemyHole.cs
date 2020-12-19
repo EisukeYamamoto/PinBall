@@ -40,16 +40,16 @@ public class EnemyHole : MonoBehaviour
 
         switch (this.gameObject.name)
         {
-            case "EnemyHole_Middle_Left":
+            case "EnemyHoleLeftMiddle":
                 targetNum = (int)Random.Range(4, enemyManager.enemyTargetList.EnemyTargetList.Count);
                 break;
-            case "EnemyHole_Above_Left":
+            case "EnemyHoleLeftAbove":
                 targetNum = (int)Random.Range(3, enemyManager.enemyTargetList.EnemyTargetList.Count);
                 break;
-            case "EnemyHole_Middle_Right":
+            case "EnemyHoleRightMiddle":
                 targetNum = (int)Random.Range(0, 5);
                 break;
-            case "EnemyHole_Above_Right":
+            case "EnemyHoleRightAbove":
                 targetNum = (int)Random.Range(0, 6);
                 break;
             default:

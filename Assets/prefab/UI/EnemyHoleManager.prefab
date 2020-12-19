@@ -372,27 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283a6ab747cc44e418a200b1289de8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyManageList:
-  - phaseNumber: phase1
-    holeInfomation:
-    - holeNumber: 1
-      initTime: 4
-      appearTime: 3
-    - holeNumber: 4
-      initTime: 4
-      appearTime: 3
-    enemyList: []
-  - phaseNumber: phase2
-    holeInfomation: []
-    enemyList: []
-  - phaseNumber: phase3
-    holeInfomation: []
-    enemyList: []
-  - phaseNumber: phase4
-    holeInfomation: []
-    enemyList: []
-  - phaseNumber: phase5
-    holeInfomation: []
-    enemyList: []
+  enemyManageList: []
   existEnemyList: []
   enemyTargetList: {fileID: 0}

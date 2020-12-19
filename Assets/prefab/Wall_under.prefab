@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 8981315579222012107}
   - component: {fileID: 1273464102167345633}
   - component: {fileID: 679488298742349348}
+  - component: {fileID: 3532255707662162899}
   m_Layer: 8
   m_Name: Wall_under
   m_TagString: DeadLine
@@ -207,6 +208,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.41, y: 8.95}
   m_EdgeRadius: 0
+--- !u!114 &3532255707662162899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859038520220872403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c5783679ea04be688d06091e3f0445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyTargetList: []
 --- !u!1 &5111505437316142971
 GameObject:
   m_ObjectHideFlags: 0
