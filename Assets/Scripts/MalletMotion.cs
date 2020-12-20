@@ -28,6 +28,10 @@ public class MalletMotion : MonoBehaviour
 
     private bool _pause = false;
 
+
+    public float UpSpeed, DownSpeed;
+    public float MaxSpeed, MinSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +78,11 @@ public class MalletMotion : MonoBehaviour
                 Vector2 p_pos = Player.transform.position;
                 this.transform.position = p_pos + p_status.player2Mallet;
             }
+
+            //速度低下
+            if (rigidbody2D.velocity.magnitude > MinSpeed)
+                rigidbody2D.velocity *= DownSpeed;
+             
         }
         else
         {
@@ -83,7 +92,7 @@ public class MalletMotion : MonoBehaviour
                 gameObject.GetComponent<Rigidbody2D>().Pause(this.gameObject);
             }
         }
-        
+        //Debug.Log(rigidbody2D.velocity.magnitude.ToString("f0"));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -106,8 +115,16 @@ public class MalletMotion : MonoBehaviour
                     scoreManager.score += 100;
                 }
             }
-        }   
+            if (collision.gameObject.CompareTag("Bumper"))
+            {
+                //速度上昇
+                if (GetComponent<Rigidbody2D>().velocity.magnitude < MaxSpeed)
+                    rigidbody2D.velocity *= UpSpeed;
+            }
+        }
     }
+
+
 
     // マレットの開始処理
     private void MalletStart()

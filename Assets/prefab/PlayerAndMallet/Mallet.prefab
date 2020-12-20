@@ -136,7 +136,9 @@ MonoBehaviour:
   rigidbody2D: {fileID: 866681893784884607}
   initPos: {x: 0, y: 1}
   initSpeed: 300
-  bumpNum: 0
-  panelNum: 0
   waitTimeLimit: 5
   _failure: 0
+  UpSpeed: 4
+  DownSpeed: 0.95
+  MaxSpeed: 7
+  MinSpeed: 6
