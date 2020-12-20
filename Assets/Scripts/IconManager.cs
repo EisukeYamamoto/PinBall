@@ -63,7 +63,7 @@ public class IconManager: MonoBehaviour
                 this.transform.position = spacePos;
                 _installaction = true;
                 StartCoroutine(MouseUpLimit());
-                itemManager.PanelColliderSwitch(false);
+                
             }
             else
             {
@@ -202,6 +202,7 @@ public class IconManager: MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
+        itemManager.PanelColliderSwitch(false);
         _installaction = false;
     }
 

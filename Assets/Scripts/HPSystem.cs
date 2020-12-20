@@ -6,11 +6,27 @@ using DG.Tweening;
 public class HPSystem : MonoBehaviour
 {
     public float hp;
+    PhaseManager phase;
+    EnemySystem enemySystem;
+    EnemyHoleManager enemyManager;
+    ScoreManager scoreManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        switch (this.gameObject.tag)
+        {
+            case "Target":
+                phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
+                break;
+            case "Enemy":
+                enemySystem = GetComponent<EnemySystem>();
+                enemyManager = GameObject.Find("EnemyHoleManager").GetComponent<EnemyHoleManager>();
+                scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+                break;
+            default:
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +46,6 @@ public class HPSystem : MonoBehaviour
                     DOTween.To(() => hp, num => hp = num, afterHp, 0.1f);
                     if (afterHp <= 0)
                     {
-                        PhaseManager phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
                         if (phase.phaseNow < phase.phaseMax)
                         {
                             phase.PinballClear();
@@ -50,14 +65,13 @@ public class HPSystem : MonoBehaviour
                     DOTween.To(() => hp, num => hp = num, afterHp, 0.1f);
                     if (afterHp <= 0)
                     {
-                        EnemyHoleManager enemyManager = GameObject.Find("EnemyHoleManager").GetComponent<EnemyHoleManager>();
                         enemyManager.existEnemyList.Remove(this.gameObject);
+                        scoreManager.score += enemySystem.score;
                         this.gameObject.SetActive(false);
                     }
                 }
                 else if (collision.gameObject.CompareTag("DeadLine"))
                 {
-                    EnemyHoleManager enemyManager = GameObject.Find("EnemyHoleManager").GetComponent<EnemyHoleManager>();
                     enemyManager.existEnemyList.Remove(this.gameObject);
                     this.gameObject.SetActive(false);
                 }
