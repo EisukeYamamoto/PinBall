@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 2177178716921881284}
   - component: {fileID: 4069330489083555873}
   - component: {fileID: 6204222851477869993}
-  - component: {fileID: 555626462670594910}
   - component: {fileID: 3455762367654865135}
   - component: {fileID: 5260418348912751672}
   m_Layer: 10
-  m_Name: Zako
+  m_Name: Zako 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,19 +113,6 @@ MonoBehaviour:
   invincibleTime: 3
   targetPos: {x: 0, y: 0}
   initPos: {x: 0, y: 0}
---- !u!114 &555626462670594910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7326417686326490132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77d021dbe4204b558bf80547616b6e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.01
 --- !u!58 &3455762367654865135
 CircleCollider2D:
   m_ObjectHideFlags: 0
