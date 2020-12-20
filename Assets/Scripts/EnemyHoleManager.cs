@@ -16,7 +16,11 @@ public class EnemyHoleSetting
 [System.Serializable]
 public class HoleInfomation
 {
+    [Header("敵の巣窟の番号:0~6")]
     public int holeNumber;
+    [Header("ゲーム開始から敵が出現し始めるまでの時間")]
+    public float initTime;
+    [Header("その穴から出てくる敵の出現頻度(繰り返す時間)")]
     public float appearTime;
 }
 
@@ -26,6 +30,8 @@ public class EnemyHoleManager : MonoBehaviour
     public List<EnemyHoleSetting> enemyManageList = new List<EnemyHoleSetting>();
     PhaseManager phase;
     List<GameObject> enemyHolesList = new List<GameObject>();
+    public List<GameObject> existEnemyList = new List<GameObject>();
+    public DeadLineTarget enemyTargetList;
     
     // Start is called before the first frame update
     void Start()
@@ -53,6 +59,7 @@ public class EnemyHoleManager : MonoBehaviour
             enemyHolesList[holenumber].SetActive(true);
             EnemyHole enemyHole = enemyHolesList[holenumber].GetComponent<EnemyHole>();
             enemyHole.appearTime = enemyManageList[phase.phaseNow-1].holeInfomation[i].appearTime;
+            enemyHole.initTime = enemyManageList[phase.phaseNow - 1].holeInfomation[i].initTime;
             enemyHole.enemyList = enemyManageList[phase.phaseNow-1].enemyList;
         }    
     }
@@ -62,6 +69,18 @@ public class EnemyHoleManager : MonoBehaviour
         foreach (GameObject Hole in enemyHolesList)
         {
             Hole.SetActive(false);
+        }
+    }
+
+    public void EnemyClear()
+    {
+        if (existEnemyList.Count > 0)
+        {
+            foreach(GameObject Enemy in existEnemyList)
+            {
+                Enemy.SetActive(false);
+            }
+            existEnemyList.Clear();
         }
     }
 

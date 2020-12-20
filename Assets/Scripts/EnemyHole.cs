@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyHole : MonoBehaviour
 {
+    public float initTime;
     public float appearTime;
     public List<GameObject> enemyList = new List<GameObject>();
+    EnemyHoleManager enemyManager;
+    int targetNum;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +24,9 @@ public class EnemyHole : MonoBehaviour
 
     void OnEnable()
     {
-        
+        enemyManager = transform.parent.GetComponent<EnemyHoleManager>();
+        //InvokeRepeating(nameof(EnemyGanarate), initTime, appearTime);
+        StartCoroutine(Repeat());
     }
 
     void EnemyGanarate()
@@ -30,5 +35,43 @@ public class EnemyHole : MonoBehaviour
         GameObject Enemy = Instantiate(enemyList[enemyNum]);
         Enemy.name = enemyList[enemyNum].name;
         Enemy.transform.position = this.transform.position;
+        EnemySystem system = Enemy.GetComponent<EnemySystem>();
+        system.initPos = this.transform.position;
+
+        switch (this.gameObject.name)
+        {
+            case "EnemyHoleLeftMiddle":
+                targetNum = (int)Random.Range(4, enemyManager.enemyTargetList.EnemyTargetList.Count);
+                break;
+            case "EnemyHoleLeftAbove":
+                targetNum = (int)Random.Range(3, enemyManager.enemyTargetList.EnemyTargetList.Count);
+                break;
+            case "EnemyHoleRightMiddle":
+                targetNum = (int)Random.Range(0, 5);
+                break;
+            case "EnemyHoleRightAbove":
+                targetNum = (int)Random.Range(0, 6);
+                break;
+            default:
+                targetNum = (int)Random.Range(0, enemyManager.enemyTargetList.EnemyTargetList.Count);
+                break;
+        }
+           
+        system.targetPos = enemyManager.enemyTargetList.EnemyTargetList[targetNum].transform.position;
+        
+        enemyManager.existEnemyList.Add(Enemy);
+        
+    }
+
+    IEnumerator Repeat()
+    {
+        yield return new WaitForSeconds(initTime);
+        while (true)
+        {
+            EnemyGanarate();
+
+            yield return new WaitForSeconds(appearTime);
+        }
+
     }
 }

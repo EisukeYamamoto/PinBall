@@ -251,6 +251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initTime: 5
+  appearTime: 0
+  enemyList: []
 --- !u!1 &323838814
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283a6ab747cc44e418a200b1289de8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList: []
+  enemyManageList: []
+  existEnemyList: []
+  enemyTargetList: {fileID: 0}
 --- !u!4 &323838816
 Transform:
   m_ObjectHideFlags: 0
@@ -345,6 +350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initTime: 5
+  appearTime: 0
+  enemyList: []
 --- !u!1 &484139692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8431691873449464468, guid: 4005063c7ef8e446e89938e2169e68f9,
@@ -564,6 +572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initTime: 5
+  appearTime: 0
+  enemyList: []
 --- !u!1 &1102902925
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +618,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initTime: 5
+  appearTime: 0
+  enemyList: []
 --- !u!1 &1128953515
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +709,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initTime: 5
+  appearTime: 0
+  enemyList: []
 --- !u!1 &1210599028
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initTime: 5
+  appearTime: 0
+  enemyList: []
 --- !u!1 &1487897888
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +971,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128609c12c22744e0960ac89e1525e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initTime: 5
+  appearTime: 0
+  enemyList: []
 --- !u!1 &1932367238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4308976906377712554, guid: 534b0f21a31b061468d336c7bec7e92b,
@@ -1281,11 +1304,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5271364732256046550, guid: 5f653d1696cb664438b9d6ea3d939013,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -11.400024
-      objectReference: {fileID: 0}
     - target: {fileID: 5271364732407138042, guid: 5f653d1696cb664438b9d6ea3d939013,
         type: 3}
       propertyPath: m_Camera
@@ -1311,6 +1329,11 @@ PrefabInstance:
       propertyPath: ItemManager
       value: 
       objectReference: {fileID: 1932367238}
+    - target: {fileID: 5271364733702495296, guid: 5f653d1696cb664438b9d6ea3d939013,
+        type: 3}
+      propertyPath: EnemyManager
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5271364733702495297, guid: 5f653d1696cb664438b9d6ea3d939013,
         type: 3}
       propertyPath: m_Name
@@ -1370,11 +1393,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5271364734140828164, guid: 5f653d1696cb664438b9d6ea3d939013,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -78.900024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f653d1696cb664438b9d6ea3d939013, type: 3}
