@@ -22,12 +22,14 @@ public class PlayerMotion : MonoBehaviour
     public bool _afterShot;
 
     GameManager gameManager;
+    PhaseManager phaseManager;
 
     // Start is called before the first frame update
     void Start()
     {
         Mallet = GameObject.FindGameObjectWithTag("Mallet");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        phaseManager = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         p_status = GetComponent<PlayerStatus>();
         m_motion = Mallet.GetComponent<MalletMotion>();
         _afterShot = false;
@@ -84,6 +86,6 @@ public class PlayerMotion : MonoBehaviour
         m_motion.rigidbody2D.AddForce(new Vector2(0, 1f) * m_motion.initSpeed * 1.5f);
         _afterShot = true;
         p_status._catching = false;
-        
+        phaseManager.touchNow += 1;
     }
 }

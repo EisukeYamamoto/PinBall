@@ -110,16 +110,17 @@ public class MalletMotion : MonoBehaviour
             // 仮
             if (collision.gameObject.CompareTag("Wall"))
             {
-                if (phase._pinballPhase)
-                {
-                    scoreManager.score += 100;
-                }
+                
             }
             if (collision.gameObject.CompareTag("Bumper"))
             {
-                //速度上昇
-                if (GetComponent<Rigidbody2D>().velocity.magnitude < MaxSpeed)
-                    rigidbody2D.velocity *= UpSpeed;
+                if (phase._pinballPhase)
+                {
+                    scoreManager.score += 100;
+                    //速度上昇
+                    if (GetComponent<Rigidbody2D>().velocity.magnitude < MaxSpeed)
+                        rigidbody2D.velocity *= UpSpeed;
+                }   
             }
         }
     }

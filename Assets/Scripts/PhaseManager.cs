@@ -8,6 +8,12 @@ public class PhaseManager : MonoBehaviour
 {
     public int phaseMax;
     public int phaseNow;
+    [Header("規定回数")]
+    public int touchLimit;
+    public int touchNow = 0;
+    [Header("このステージのランク設定")]
+    public List<int> rankList = new List<int>();
+
     [Header("ターゲットリスト")]
     public Vector2[] targetPos;
     public List<GameObject> TargetList;
