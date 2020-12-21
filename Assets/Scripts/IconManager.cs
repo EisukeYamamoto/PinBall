@@ -49,6 +49,10 @@ public class IconManager: MonoBehaviour
             {
                 itemManager.PanelColliderSwitch(true);
             }
+            else
+            {
+                GetComponent<CircleCollider2D>().isTrigger = true;
+            }
 
             
         }   
@@ -58,6 +62,10 @@ public class IconManager: MonoBehaviour
     {
         if (phase._stageEditPhase)
         {
+            if(this.transform.gameObject.tag != "PanelIcon")
+            {
+                GetComponent<CircleCollider2D>().isTrigger = false;
+            }
             if (_inItemSpace)
             {
                 this.transform.position = spacePos;
@@ -83,6 +91,7 @@ public class IconManager: MonoBehaviour
     {
         if (phase._stageEditPhase)
         {
+            //Debug.Log(this.gameObject.tag);
             if (this.gameObject.CompareTag("PanelIcon"))
             {
                 if (_fieldChack(collision))
@@ -102,6 +111,7 @@ public class IconManager: MonoBehaviour
             }
             else if (this.gameObject.CompareTag("ItemIcon"))
             {
+                Debug.Log(collision.gameObject.name);
                 if (collision.gameObject.CompareTag("ItemSpace"))
                 {
                     _inItemSpace = true;
@@ -120,6 +130,7 @@ public class IconManager: MonoBehaviour
                 if (collision.gameObject.CompareTag("ItemSpace"))
                 {
                     _inItemSpace = true;
+                    Debug.Log(collision.gameObject.name);
                     spacePos = collision.gameObject.transform.position;
                     itemSpace = collision.gameObject;
                 }

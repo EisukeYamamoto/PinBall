@@ -3183,7 +3183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &968687878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5028,6 +5028,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGMSource
       objectReference: {fileID: 0}
+    - target: {fileID: 5416701019885057585, guid: f5a9c8bfdfc6b4bc7a4a0d3ebf6c2dbb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5416701019885057586, guid: f5a9c8bfdfc6b4bc7a4a0d3ebf6c2dbb,
         type: 3}
       propertyPath: m_audioClip
@@ -5182,7 +5187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1660692974
 RectTransform:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2059100316379449800}
   m_Layer: 0
   m_Name: Icon_Slingshot
-  m_TagString: Bumper
+  m_TagString: ItemIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

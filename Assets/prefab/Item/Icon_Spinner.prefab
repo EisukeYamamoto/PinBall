@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 8288122086182396179}
   m_Layer: 9
   m_Name: Icon_Spinner
-  m_TagString: Bumper
+  m_TagString: ItemIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
