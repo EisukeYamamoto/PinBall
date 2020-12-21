@@ -47,7 +47,8 @@ public class ItemManager : MonoBehaviour
 
     [Header("ターゲットとの最小距離(これより近いとリストに戻す)")]
     public float distanceLimit;
-
+    public AudioSource audioSource;
+    public AudioClip boo_se;
     private Vector2 hidePos;
 
     [Header("出現するリストの位置")]
@@ -63,6 +64,7 @@ public class ItemManager : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         holders_item = ItemHolders.GetComponent<ItemHoldersManager>();
         holders_area = AreaHolders.GetComponent<ItemHoldersManager>();
+        audioSource = GetComponent<AudioSource>();
         _panelBottunPushed = true;
         //appearPos = new Vector3(-315, -20, 0);
         hidePos = new Vector3(-800, -20, 0);
@@ -198,11 +200,12 @@ public class ItemManager : MonoBehaviour
                         
                     }
                 }
-                if (distance < distanceLimit)
+                if (distance < distanceLimit && !icon._draging)
                 {
                     GameObject ItemIconClone = FindFromSeriesWithIcon(Item, itemSeries, itemIconSeries);
                     existItem.Remove(Item);
                     Destroy(Item);
+                    audioSource.PlayOneShot(boo_se);
                     ListAddChack(itemList, holders_item.itemHolderList);
                     itemList.Insert(0, ItemIconClone);
                 }

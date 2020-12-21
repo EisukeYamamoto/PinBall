@@ -67,6 +67,12 @@ public class IconManager: MonoBehaviour
             }
             else
             {
+                float distance = Vector2.Distance(this.transform.position, phase.targetPos[phase.phaseNow - 1]);
+                if(distance < itemManager.distanceLimit)
+                {
+                    itemManager.audioSource.PlayOneShot(itemManager.boo_se);
+                }
+
                 this.transform.position = prevPos;
                 _draging = false;
             }
