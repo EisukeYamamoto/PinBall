@@ -110,7 +110,6 @@ public class PhaseManager : MonoBehaviour
             hpNow = targetHP.hp;
             slider.value = hpNow / hpMax;
         }
-
         
     }
 
@@ -142,7 +141,7 @@ public class PhaseManager : MonoBehaviour
 
     public void PinballStart()
     {
-        if (!_ready)
+        if (!_ready && !gameManager.game_stop_flg)
         {
             StartCoroutine(ReadyGo());
         }      

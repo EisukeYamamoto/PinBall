@@ -142,3 +142,4 @@ MonoBehaviour:
   DownSpeed: 0.95
   MaxSpeed: 7
   MinSpeed: 6
+  speedLimit: 1

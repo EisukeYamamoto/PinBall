@@ -1065,6 +1065,9 @@ MonoBehaviour:
     - holeNumber: 6
       initTime: 1
       appearTime: 5
+    - holeNumber: 6
+      initTime: 1
+      appearTime: 5
     enemyList:
     - {fileID: 7326417686326490132, guid: 7f2e3c2b33d3dc5469e8de86537e7f7b, type: 3}
   - phaseNumber: 
@@ -3183,7 +3186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &968687878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5031,7 +5034,7 @@ PrefabInstance:
     - target: {fileID: 5416701019885057585, guid: f5a9c8bfdfc6b4bc7a4a0d3ebf6c2dbb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5416701019885057586, guid: f5a9c8bfdfc6b4bc7a4a0d3ebf6c2dbb,
         type: 3}
@@ -5187,7 +5190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1660692974
 RectTransform:
   m_ObjectHideFlags: 0

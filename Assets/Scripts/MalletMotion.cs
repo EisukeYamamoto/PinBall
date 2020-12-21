@@ -28,9 +28,12 @@ public class MalletMotion : MonoBehaviour
 
     private bool _pause = false;
 
+    private bool _waiting = false;
 
     public float UpSpeed, DownSpeed;
     public float MaxSpeed, MinSpeed;
+
+    public float speedLimit;  // 最低速度
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,7 @@ public class MalletMotion : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
         down = new Vector2(0, -1);
+        _waiting = true;
         //MalletStart();
     }
 
@@ -82,7 +86,29 @@ public class MalletMotion : MonoBehaviour
             //速度低下
             if (rigidbody2D.velocity.magnitude > MinSpeed)
                 rigidbody2D.velocity *= DownSpeed;
-             
+
+
+            //止まったときの処理
+            //最低速度に達すると、初期位置に再配置する
+            if (rigidbody2D.velocity.magnitude <= speedLimit &&
+                rigidbody2D.velocity.magnitude > 0 &&
+                !p_status._catching && !_waiting && _start)
+            {
+                if (phase._pinballPhase)
+                {
+                    _failure = true;
+                    MalletReset();
+                }
+            }
+
+            //// 速度低下テスト用
+            //if (rigidbody2D.velocity.magnitude > 0 &&
+            //    !p_status._catching && !_waiting && _start)
+            //{
+            //    rigidbody2D.velocity *= DownSpeed;
+            //}
+
+
         }
         else
         {
@@ -134,6 +160,7 @@ public class MalletMotion : MonoBehaviour
         waitTimeNow = 0f;
         collider.enabled = true;
         rigidbody2D.AddForce(down * initSpeed);
+        _waiting = false;
     }
 
     // マレットの動きリセット
@@ -142,6 +169,7 @@ public class MalletMotion : MonoBehaviour
         waitTimeNow = 0f;
         rigidbody2D.velocity = Vector2.zero;
         collider.enabled = false;
+        _waiting = true;
         this.transform.position = initPos;
         this.transform.rotation = Quaternion.identity;
     }
