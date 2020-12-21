@@ -58,7 +58,7 @@ MonoBehaviour:
     type: 3}
   resultCanvasPrefab_Final: {fileID: 8751377499605859285, guid: dee0a95bd16df4b108aff0ce327422f7,
     type: 3}
-  PauseCanvasPrefab: {fileID: 5807720048647307858, guid: 0c9c7517b98384f919b4670406958521,
+  PauseCanvasPrefab: {fileID: 5807720048647307858, guid: 1c0b04e1993eb4d148f54dc034de804a,
     type: 3}
   ConfilmCanvasPrefab_StageSelect: {fileID: 855994574734250246, guid: e0485190267194e8d854c989c766bf9f,
     type: 3}
