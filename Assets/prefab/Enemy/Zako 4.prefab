@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+  Particle: {fileID: 19800004, guid: f61b61f6927c51741a17c52f6bbd88e6, type: 3}
 --- !u!114 &6204222851477869993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 019e9d5182a3544c2aa61dc788a06eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   invincibleTime: 3
   targetPos: {x: 0, y: 0}
   initPos: {x: 0, y: 0}
