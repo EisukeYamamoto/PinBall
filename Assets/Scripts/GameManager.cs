@@ -289,10 +289,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             //ボタンを取得
             buttons = PauseCanvasClone.GetComponentsInChildren<Button>();
 
+            Debug.Log(buttons[0]);
+            Debug.Log(buttons[1]);
+            Debug.Log(buttons[2]);
+
             //ボタンにイベント設定
             buttons[0].onClick.AddListener(Retry_Pause);
             buttons[1].onClick.AddListener(ConfilmPauseRestart);
             buttons[2].onClick.AddListener(ConfilmPauseBack);
+            Debug.Log("Set");
         }
 
     }
@@ -469,6 +474,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void Retry_Pause()
     {
         Destroy(PauseCanvasClone);
+        Debug.Log("Retry");
         // SE
         //audioSource.PlayOneShot(positive_se);
         game_stop_flg = false;
