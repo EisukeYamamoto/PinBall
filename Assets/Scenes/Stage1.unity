@@ -1309,6 +1309,11 @@ MonoBehaviour:
   touchLimit: 0
   touchNow: 0
   rankList: 
+  _tutorial: 1
+  TutorialCanvas:
+  - {fileID: 5807720048647307858, guid: 0c9c7517b98384f919b4670406958521, type: 3}
+  - {fileID: 5807720048647307858, guid: 0c9c7517b98384f919b4670406958521, type: 3}
+  tutorialTiming: 0100000003000000
   breakCountLimit: 3
   breakCountNow: 0
   breakText: {fileID: 1222264825}
