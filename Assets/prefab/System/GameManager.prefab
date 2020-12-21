@@ -52,7 +52,8 @@ MonoBehaviour:
   - Stage5
   fadeCanvasPrefab: {fileID: 4024866403986555897, guid: 7401fbd11671944aa975b01efef00aaa,
     type: 3}
-  gameOverCanvasPrefab: {fileID: 0}
+  gameOverCanvasPrefab: {fileID: 5262683136795604141, guid: d6279e86fe76243b5be4995f6743abf2,
+    type: 3}
   resultCanvasPrefab: {fileID: 8751377499605859285, guid: 31c4094a0c61441b0926a1befdc39cb5,
     type: 3}
   resultCanvasPrefab_Final: {fileID: 8751377499605859285, guid: dee0a95bd16df4b108aff0ce327422f7,

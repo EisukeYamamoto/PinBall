@@ -8,6 +8,7 @@ public class EnemyHole : MonoBehaviour
     public float appearTime;
     public List<GameObject> enemyList = new List<GameObject>();
     EnemyHoleManager enemyManager;
+    GameManager gameManager;
     int targetNum;
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class EnemyHole : MonoBehaviour
     void OnEnable()
     {
         enemyManager = transform.parent.GetComponent<EnemyHoleManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //InvokeRepeating(nameof(EnemyGanarate), initTime, appearTime);
         StartCoroutine(Repeat());
     }
@@ -68,10 +70,12 @@ public class EnemyHole : MonoBehaviour
         yield return new WaitForSeconds(initTime);
         while (true)
         {
-            EnemyGanarate();
+            if (!gameManager.game_stop_flg)
+            {
+                EnemyGanarate();
+            }
 
-            yield return new WaitForSeconds(appearTime);
+            yield return new WaitForSeconds(appearTime);  
         }
-
     }
 }

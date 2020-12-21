@@ -65,6 +65,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         //デリゲートの登録
         SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
 
     //シーンのロード時に実行（最初は実行されない）
@@ -206,7 +207,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         // ボタンにイベント設定
         buttons[0].onClick.AddListener(Retry);
-        buttons[1].onClick.AddListener(Return);
+        buttons[1].onClick.AddListener(ConfilmGameOverBack);
 
     }
 
@@ -294,7 +295,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         //ボタンにイベント設定
         buttons[0].onClick.AddListener(ConfilmStageSelect);
-        buttons[1].onClick.AddListener(Return);
+        buttons[1].onClick.AddListener(Return_toStart);
     }
 
     public void ConfilmStageSelect()
@@ -330,6 +331,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         //ボタンにイベント設定
         buttons[0].onClick.AddListener(Return_Pause);
+        buttons[1].onClick.AddListener(SelectNo_2);
+    }
+
+    public void ConfilmGameOverBack()
+    {
+        game_stop_flg = true;
+        Confilm = Instantiate(ConfilmCanvasPrefab_Pause_Back);
+
+        Button[] buttons = Confilm.GetComponentsInChildren<Button>();
+
+        //ボタンにイベント設定
+        buttons[0].onClick.AddListener(Return);
         buttons[1].onClick.AddListener(SelectNo_2);
     }
 
@@ -387,6 +400,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void Return()
     {
         Destroy(gameOverCanvasClone);
+        Destroy(Confilm);
+
+        // SE
+        //audioSource.PlayOneShot(negative_se);
+
+        MoveToStage(1);
+    }
+
+    //最初のシーンに戻る
+    public void Return_toStart()
+    {
+        //Destroy(gameOverCanvasClone);
 
         // SE
         //audioSource.PlayOneShot(negative_se);

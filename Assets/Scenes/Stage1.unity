@@ -1612,6 +1612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5271364733702495296, guid: 5f653d1696cb664438b9d6ea3d939013,
         type: 3}
+      propertyPath: rankList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271364733702495296, guid: 5f653d1696cb664438b9d6ea3d939013,
+        type: 3}
       propertyPath: ItemManager
       value: 
       objectReference: {fileID: 1932367238}
@@ -1620,6 +1625,31 @@ PrefabInstance:
       propertyPath: EnemyManager
       value: 
       objectReference: {fileID: 323838814}
+    - target: {fileID: 5271364733702495296, guid: 5f653d1696cb664438b9d6ea3d939013,
+        type: 3}
+      propertyPath: touchLimit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271364733702495296, guid: 5f653d1696cb664438b9d6ea3d939013,
+        type: 3}
+      propertyPath: rankList.Array.data[0]
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271364733702495296, guid: 5f653d1696cb664438b9d6ea3d939013,
+        type: 3}
+      propertyPath: rankList.Array.data[1]
+      value: 8000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271364733702495296, guid: 5f653d1696cb664438b9d6ea3d939013,
+        type: 3}
+      propertyPath: rankList.Array.data[2]
+      value: 7000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271364733702495296, guid: 5f653d1696cb664438b9d6ea3d939013,
+        type: 3}
+      propertyPath: rankList.Array.data[3]
+      value: 6000
+      objectReference: {fileID: 0}
     - target: {fileID: 5271364733702495297, guid: 5f653d1696cb664438b9d6ea3d939013,
         type: 3}
       propertyPath: m_Name
