@@ -11,7 +11,7 @@ public class HPSystem : MonoBehaviour
     EnemyHoleManager enemyManager;
     ScoreManager scoreManager;
     GameManager gameManager;
-
+    public ParticleSystem Particle;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +73,7 @@ public class HPSystem : MonoBehaviour
                             enemyManager.existEnemyList.Remove(this.gameObject);
                             scoreManager.score += enemySystem.score;
                             this.gameObject.SetActive(false);
+                            Instantiate(Particle, transform.position, Quaternion.identity);
                         }
                     }
                     else if (collision.gameObject.CompareTag("DeadLine"))

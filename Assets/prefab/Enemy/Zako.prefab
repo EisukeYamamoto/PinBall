@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+  Particle: {fileID: 0}
 --- !u!114 &6204222851477869993
 MonoBehaviour:
   m_ObjectHideFlags: 0
