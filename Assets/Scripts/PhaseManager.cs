@@ -13,6 +13,11 @@ public class PhaseManager : MonoBehaviour
     public int touchNow = 0;
     [Header("このステージのランク設定")]
     public List<int> rankList = new List<int>();
+    [Header("チュートリアルステージ設定")]
+    public bool _tutorial;
+    public List<GameObject> TutorialCanvas = new List<GameObject>();
+    public List<int> tutorialTiming = new List<int>();
+    private bool _reading;
     [Header("ゲームオーバ条件")]
     public int breakCountLimit = 3;
     public int breakCountNow;
@@ -74,6 +79,10 @@ public class PhaseManager : MonoBehaviour
         _stageEditPhase = true;
         _pinballPhase = false;
         AppearTarget(0);
+        if (_tutorial && tutorialTiming.Contains(phaseNow))
+        {
+            StartCoroutine(Tutorial(tutorialTiming.IndexOf(phaseNow)));
+        }
     }
 
     // Update is called once per frame
@@ -267,5 +276,33 @@ public class PhaseManager : MonoBehaviour
         _stageEditPhase = true;
         phaseNow += 1;
         AppearTarget(0);
+        if (_tutorial && tutorialTiming.Contains(phaseNow))
+        {
+            StartCoroutine(Tutorial(tutorialTiming.IndexOf(phaseNow)));
+        }
+    }
+
+    IEnumerator Tutorial(int num)
+    {
+        yield return new WaitForEndOfFrame();
+        gameManager.game_stop_flg = true;
+        gameManager.pause_flg = false;
+        _reading = true;
+        yield return new WaitForSeconds(1.0f);
+
+        GameObject Tutorial = Instantiate(TutorialCanvas[num]);
+        Button[] button = Tutorial.GetComponentsInChildren<Button>();
+        button[0].onClick.AddListener(OK);
+
+        yield return new WaitUntil(() => !_reading);
+
+        Tutorial.SetActive(false);
+        gameManager.game_stop_flg = false;
+        gameManager.pause_flg = true;
+    }
+
+    void OK()
+    {
+        _reading = false;
     }
 }
