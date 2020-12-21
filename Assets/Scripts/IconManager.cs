@@ -17,11 +17,13 @@ public class IconManager: MonoBehaviour
 
     PhaseManager phase;
     ItemManager itemManager;
+    GameManager gameManager;
 
     void Start()
     {
         phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         prevPos = this.transform.position;
         _inItemSpace = false;
         _installaction = false;
@@ -39,33 +41,30 @@ public class IconManager: MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (phase._stageEditPhase)
+        if (!gameManager.game_stop_flg)
         {
-            Vector3 currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint) + this.offset;
-            this.transform.position = currentPosition;
-            _draging = true;
-            if (this.transform.gameObject.tag == "PanelIcon")
+            if (phase._stageEditPhase)
             {
-                itemManager.PanelColliderSwitch(true);
-            }
-            else
-            {
-                GetComponent<CircleCollider2D>().isTrigger = true;
-            }
+                Vector3 currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+                Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint) + this.offset;
+                this.transform.position = currentPosition;
+                _draging = true;
+                if (this.transform.gameObject.tag == "PanelIcon")
+                {
+                    itemManager.PanelColliderSwitch(true);
+                }
 
-            
-        }   
+
+            }
+        }
+
+         
     }
 
     void OnMouseUp()
     {
         if (phase._stageEditPhase)
         {
-            if(this.transform.gameObject.tag != "PanelIcon")
-            {
-                GetComponent<CircleCollider2D>().isTrigger = false;
-            }
             if (_inItemSpace)
             {
                 this.transform.position = spacePos;
@@ -111,7 +110,6 @@ public class IconManager: MonoBehaviour
             }
             else if (this.gameObject.CompareTag("ItemIcon"))
             {
-                Debug.Log(collision.gameObject.name);
                 if (collision.gameObject.CompareTag("ItemSpace"))
                 {
                     _inItemSpace = true;
@@ -130,7 +128,6 @@ public class IconManager: MonoBehaviour
                 if (collision.gameObject.CompareTag("ItemSpace"))
                 {
                     _inItemSpace = true;
-                    Debug.Log(collision.gameObject.name);
                     spacePos = collision.gameObject.transform.position;
                     itemSpace = collision.gameObject;
                 }
