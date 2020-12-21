@@ -58,9 +58,11 @@ public class MoveRepeat : MonoBehaviour
         {
             if (move)
             {
+                if (positionCount == 0) return;
+
                 time1 += Time.deltaTime / durations[step % positionCount];
 
-                myTrans.localPosition = Vector3.Slerp(
+                myTrans.localPosition = Vector3.Lerp(
                     positions[step % positionCount],
                     positions[(step + 1) % positionCount],
                     time1
@@ -72,6 +74,7 @@ public class MoveRepeat : MonoBehaviour
                     step++;
                     time1 = 0f;
                 }
+
             }
             else tweener.Play();
         }

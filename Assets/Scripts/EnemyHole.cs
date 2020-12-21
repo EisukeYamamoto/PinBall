@@ -10,11 +10,10 @@ public class EnemyHole : MonoBehaviour
     EnemyHoleManager enemyManager;
     int targetNum;
 
-    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -69,10 +68,11 @@ public class EnemyHole : MonoBehaviour
         yield return new WaitForSeconds(initTime);
         while (true)
         {
-            if (!gameManager.game_stop_flg)
-                EnemyGanarate();
+
+            EnemyGanarate();
 
             yield return new WaitForSeconds(appearTime);
         }
+
     }
 }

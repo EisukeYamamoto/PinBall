@@ -21,6 +21,8 @@ TagManager:
   - EnemyHole
   - Enemy
   - Target
+  - FxTemporaire
+  - AtkItem
   layers:
   - Default
   - TransparentFX
@@ -33,8 +35,8 @@ TagManager:
   - Wall
   - Item
   - Enemy
-  - 
-  - 
+  - AtkItem
+  - Player
   - 
   - 
   - 
