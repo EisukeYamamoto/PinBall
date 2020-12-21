@@ -149,6 +149,6 @@ public class ResultManager : MonoBehaviour
             Rank = RankList[4];
         }
         Rank.SetActive(true);
-        Rank.transform.DOScale(new Vector2(1f, 1f), 0.5f).SetEase(Ease.OutBack);
+        Rank.transform.DOScale(new Vector2(1f, 1f), 0.2f).SetEase(Ease.OutBack);
     }
 }
