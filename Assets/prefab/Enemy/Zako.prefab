@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 555626462670594910}
   - component: {fileID: 3455762367654865135}
   - component: {fileID: 5260418348912751672}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Zako
   m_TagString: Enemy
   m_Icon: {fileID: 0}

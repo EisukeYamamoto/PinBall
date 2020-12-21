@@ -1,40 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class EnemyMotion_Zako : MonoBehaviour
+using DG.Tweening;
+public class EnemyMotion_Stop : MonoBehaviour
 {
     EnemySystem system;
     private float distance;
     Vector2 nowPos;
     float seata;
+    GameManager gameManager;
     [SerializeField]
     private float speed = 0.1f;
     private bool _start = false;
-    GameManager gameManager;
 
+    [Header("目的地")]
+    public Vector2 targetPos;
+    [Header("何秒かけていくか")]
+    public float time = 5.0f;
+
+    Tweener tweener;
     // Start is called before the first frame update
     void Start()
     {
-        _start = false;
+
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _start = false;
         system = this.GetComponent<EnemySystem>();
         StartCoroutine(InitSetting());
+        tweener = transform.DOMove(targetPos, time);
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (!gameManager.game_stop_flg)
+
+        if (_start)
         {
-            if (_start)
+            //float sin = Mathf.Sin(Time.time);
+            //this.transform.position = new Vector2(0, sin);
+            if (!gameManager.game_stop_flg)
             {
-                distance -= speed;
-                nowPos.x = distance * Mathf.Cos(seata) + system.targetPos.x;
-                nowPos.y = distance * Mathf.Sin(seata) + system.targetPos.y;
-                this.transform.position = nowPos;
+                tweener.Play();
+            }
+            else
+            {
+                tweener.Pause();
             }
         }
+
     }
 
     IEnumerator InitSetting()

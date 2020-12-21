@@ -70,11 +70,11 @@ public class EnemyHole : MonoBehaviour
         yield return new WaitForSeconds(initTime);
         while (true)
         {
+
             if (!gameManager.game_stop_flg)
             {
                 EnemyGanarate();
             }
-
             yield return new WaitForSeconds(appearTime);  
         }
     }

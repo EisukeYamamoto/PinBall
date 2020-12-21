@@ -64,7 +64,7 @@ public class HPSystem : MonoBehaviour
                     }
                     break;
                 case "Enemy":
-                    if (collision.gameObject.CompareTag("Mallet"))
+                    if (collision.gameObject.CompareTag("Mallet") || collision.gameObject.CompareTag("AtkItem"))
                     {
                         float afterHp = hp - 1;
                         DOTween.To(() => hp, num => hp = num, afterHp, 0.1f);
