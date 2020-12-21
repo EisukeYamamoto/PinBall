@@ -559,8 +559,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 54.600006}
-  m_SizeDelta: {x: 100, y: 0}
+  m_AnchoredPosition: {x: 150, y: 54.6}
+  m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7317112745768714447
 SpriteRenderer:
@@ -600,16 +600,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 7b37cde1cb3ed47b29857280e5215091, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 100, y: 25}
+  m_Size: {x: 100, y: 60}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &9197178489119589161
@@ -630,7 +630,7 @@ BoxCollider2D:
     border: {x: 0.089999996, y: 0.089999996, z: 0.099999994, w: 0.07}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.62, y: 0.62}
-    newSize: {x: 100, y: 25}
+    newSize: {x: 100, y: 60}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
@@ -650,8 +650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 4
+  m_AspectMode: 0
+  m_AspectRatio: 1.6666666
 --- !u!1 &4006421239068222487
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +740,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 54.6}
-  m_SizeDelta: {x: 100, y: 0}
+  m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6985377623767733409
 SpriteRenderer:
@@ -780,16 +780,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 7b37cde1cb3ed47b29857280e5215091, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 100, y: 25}
+  m_Size: {x: 100, y: 60}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &945628591334764498
@@ -810,7 +810,7 @@ BoxCollider2D:
     border: {x: 0.089999996, y: 0.089999996, z: 0.099999994, w: 0.07}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.62, y: 0.62}
-    newSize: {x: 100, y: 25}
+    newSize: {x: 100, y: 60}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
@@ -830,8 +830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 4
+  m_AspectMode: 0
+  m_AspectRatio: 1.6666666
 --- !u!1 &5017171694896032131
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +968,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 25, y: 0}
+  m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &5517104487218451119
 SpriteRenderer:
@@ -1008,16 +1008,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 7b37cde1cb3ed47b29857280e5215091, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 25, y: 25}
+  m_Size: {x: 100, y: 60}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2580366438350322096
@@ -1032,8 +1032,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 1
+  m_AspectMode: 0
+  m_AspectRatio: 1.6666666
 --- !u!1 &5891558815184136513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1069,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -150, y: -50}
-  m_SizeDelta: {x: 25, y: 0}
+  m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &8295155483566432846
 SpriteRenderer:
@@ -1109,16 +1109,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 7b37cde1cb3ed47b29857280e5215091, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 25, y: 25}
+  m_Size: {x: 100, y: 60}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4251066462419229709
@@ -1133,8 +1133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 1
+  m_AspectMode: 0
+  m_AspectRatio: 1.6666666
 --- !u!1 &7778487850569087315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1170,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 150, y: -50}
-  m_SizeDelta: {x: 25, y: 0}
+  m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &4086480019966992434
 SpriteRenderer:
@@ -1210,16 +1210,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 7b37cde1cb3ed47b29857280e5215091, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 25, y: 25}
+  m_Size: {x: 100, y: 60}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &5687682300545875133
@@ -1234,8 +1234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 1
+  m_AspectMode: 0
+  m_AspectRatio: 1.6666666
 --- !u!1 &7881419280246433818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,8 +1401,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 54.600006}
-  m_SizeDelta: {x: 100, y: 0}
+  m_AnchoredPosition: {x: -150, y: 54.6}
+  m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &3299949108421194757
 SpriteRenderer:
@@ -1442,16 +1442,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 7b37cde1cb3ed47b29857280e5215091, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 100, y: 25}
+  m_Size: {x: 100, y: 60}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &5474867952068653008
@@ -1472,7 +1472,7 @@ BoxCollider2D:
     border: {x: 0.089999996, y: 0.089999996, z: 0.099999994, w: 0.07}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.62, y: 0.62}
-    newSize: {x: 100, y: 25}
+    newSize: {x: 100, y: 60}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
@@ -1492,5 +1492,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 4
+  m_AspectMode: 0
+  m_AspectRatio: 1.6666666
