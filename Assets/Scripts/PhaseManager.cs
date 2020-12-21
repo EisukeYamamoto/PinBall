@@ -8,6 +8,15 @@ public class PhaseManager : MonoBehaviour
 {
     public int phaseMax;
     public int phaseNow;
+    [Header("規定回数")]
+    public int touchLimit;
+    public int touchNow = 0;
+    [Header("このステージのランク設定")]
+    public List<int> rankList = new List<int>();
+    [Header("ゲームオーバ条件")]
+    public int breakCountLimit = 3;
+    public int breakCountNow;
+    public TextMeshProUGUI breakText;
     [Header("ターゲットリスト")]
     public Vector2[] targetPos;
     public List<GameObject> TargetList;
@@ -54,6 +63,7 @@ public class PhaseManager : MonoBehaviour
     void Awake()
     {
         phaseNow = 1;
+        breakCountNow = breakCountLimit;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _pinballPhase = false;
         _stageEditPhase = false;
@@ -85,6 +95,7 @@ public class PhaseManager : MonoBehaviour
             }        
         }
         PhaseText();
+        breakText.text = breakCountNow.ToString();
         if (targetClone != null)
         {
             hpNow = targetHP.hp;

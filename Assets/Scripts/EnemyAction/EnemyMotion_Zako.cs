@@ -13,6 +13,7 @@ public class EnemyMotion_Zako : MonoBehaviour
     [SerializeField]
     private float speed = 0.1f;
     private bool _start = false;
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,20 +21,28 @@ public class EnemyMotion_Zako : MonoBehaviour
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _start = false;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         system = this.GetComponent<EnemySystem>();
         StartCoroutine(InitSetting());
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+<<<<<<< HEAD:Assets/Scripts/EnemyAction/EnemyMotion_Zako.cs
         if ((!gameManager.game_stop_flg))
+=======
+        if (!gameManager.game_stop_flg)
+>>>>>>> main:Assets/Scripts/EnemyMotion_Zako.cs
         {
-            distance -= speed;
-            nowPos.x = distance * Mathf.Cos(seata) + system.targetPos.x;
-            nowPos.y = distance * Mathf.Sin(seata) + system.targetPos.y;
-            this.transform.position = nowPos;
-        }  
+            if (_start)
+            {
+                distance -= speed;
+                nowPos.x = distance * Mathf.Cos(seata) + system.targetPos.x;
+                nowPos.y = distance * Mathf.Sin(seata) + system.targetPos.y;
+                this.transform.position = nowPos;
+            }
+        }
     }
 
     IEnumerator InitSetting()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySystem : MonoBehaviour
 {
     CircleCollider2D collider;
+    public int score;
     [SerializeField]
     private float invincibleTime = 3;
     public Vector2 targetPos;

@@ -6,11 +6,30 @@ using DG.Tweening;
 public class HPSystem : MonoBehaviour
 {
     public float hp;
+    PhaseManager phase;
+    EnemySystem enemySystem;
+    EnemyHoleManager enemyManager;
+    ScoreManager scoreManager;
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        switch (this.gameObject.tag)
+        {
+            case "Target":
+                phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
+                break;
+            case "Enemy":
+                phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
+                enemySystem = GetComponent<EnemySystem>();
+                enemyManager = GameObject.Find("EnemyHoleManager").GetComponent<EnemyHoleManager>();
+                scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+                break;
+            default:
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -21,50 +40,55 @@ public class HPSystem : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (this.gameObject.tag)
+        if (!gameManager.game_stop_flg)
         {
-            case "Target":
-                if (collision.gameObject.CompareTag("Mallet"))
-                {
-                    float afterHp = hp - 1;
-                    DOTween.To(() => hp, num => hp = num, afterHp, 0.1f);
-                    if (afterHp <= 0)
+            switch (this.gameObject.tag)
+            {
+                case "Target":
+                    if (collision.gameObject.CompareTag("Mallet"))
                     {
-                        PhaseManager phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
-                        if (phase.phaseNow < phase.phaseMax)
+                        float afterHp = hp - 1;
+                        DOTween.To(() => hp, num => hp = num, afterHp, 0.1f);
+                        if (afterHp <= 0)
                         {
-                            phase.PinballClear();
+                            if (phase.phaseNow < phase.phaseMax)
+                            {
+                                phase.PinballClear();
+                            }
+                            else
+                            {
+                                phase.StageClear();
+                            }
+                            this.gameObject.SetActive(false);
                         }
-                        else
-                        {
-                            phase.StageClear();
-                        }
-                        this.gameObject.SetActive(false);
                     }
-                }
-                break;
-            case "Enemy":
-                if (collision.gameObject.CompareTag("Mallet")|| collision.gameObject.CompareTag("AtkItem"))
-                {
-                    float afterHp = hp - 1;
-                    DOTween.To(() => hp, num => hp = num, afterHp, 0.1f);
-                    if (afterHp <= 0)
+                    break;
+                case "Enemy":
+                    if (collision.gameObject.CompareTag("Mallet") || collision.gameObject.CompareTag("AtkItem"))
                     {
-                        EnemyHoleManager enemyManager = GameObject.Find("EnemyHoleManager").GetComponent<EnemyHoleManager>();
+                        float afterHp = hp - 1;
+                        DOTween.To(() => hp, num => hp = num, afterHp, 0.1f);
+                        if (afterHp <= 0)
+                        {
+                            enemyManager.existEnemyList.Remove(this.gameObject);
+                            scoreManager.score += enemySystem.score;
+                            this.gameObject.SetActive(false);
+                        }
+                    }
+                    else if (collision.gameObject.CompareTag("DeadLine"))
+                    {
                         enemyManager.existEnemyList.Remove(this.gameObject);
                         this.gameObject.SetActive(false);
+                        phase.breakCountNow -= 1;
+                        if (phase.breakCountNow <= 0)
+                        {
+                            gameManager.GameOver();
+                        }
                     }
-                }
-                else if (collision.gameObject.CompareTag("DeadLine"))
-                {
-                    EnemyHoleManager enemyManager = GameObject.Find("EnemyHoleManager").GetComponent<EnemyHoleManager>();
-                    enemyManager.existEnemyList.Remove(this.gameObject);
-                    this.gameObject.SetActive(false);
-                }
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
         }
-
     }
 }

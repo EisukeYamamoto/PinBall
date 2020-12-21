@@ -111,7 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 019e9d5182a3544c2aa61dc788a06eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibleTime: 3
+  score: 150
+  invincibleTime: 1.5
   targetPos: {x: 0, y: 0}
   initPos: {x: 0, y: 0}
 --- !u!114 &555626462670594910

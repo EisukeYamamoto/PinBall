@@ -13,6 +13,7 @@ public class PlayerStatus : MonoBehaviour
     SpriteRenderer spriteRenderer;
     CircleCollider2D collider2D;
     GameManager gameManager;
+    PhaseManager phaseManager;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PlayerStatus : MonoBehaviour
         collider2D = GetComponent<CircleCollider2D>();
         p_motion = GetComponent<PlayerMotion>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        phaseManager = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         _canCatchMallet = false;
         _catching = false;
     }
@@ -37,6 +39,14 @@ public class PlayerStatus : MonoBehaviour
         {
             collider2D.isTrigger = false;
             ChangeTransparency(1);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Mallet"))
+        {
+            phaseManager.touchNow += 1;
         }
     }
 
