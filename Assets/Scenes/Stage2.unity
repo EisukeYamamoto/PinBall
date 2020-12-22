@@ -1060,58 +1060,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyManageList:
-  - phaseNumber: 
+  - phaseNumber: phase1
     holeInfomation:
     - holeNumber: 6
       initTime: 1
-      appearTime: 5
-    enemyList:
-    - {fileID: 7326417686326490132, guid: 7f2e3c2b33d3dc5469e8de86537e7f7b, type: 3}
-  - phaseNumber: 
-    holeInfomation:
-    - holeNumber: 6
-      initTime: 1
-      appearTime: 3
-    - holeNumber: 5
-      initTime: 2
-      appearTime: 4
-    - holeNumber: 4
-      initTime: 3
-      appearTime: 3
-    - holeNumber: 3
-      initTime: 3
-      appearTime: 3
+      appearTime: 10
+    - holeNumber: 1
+      initTime: 20
+      appearTime: 20
     - holeNumber: 2
-      initTime: 3
-      appearTime: 3
-    - holeNumber: 1
-      initTime: 3
-      appearTime: 3
-    - holeNumber: 0
-      initTime: 3
-      appearTime: 3
+      initTime: 30
+      appearTime: 10
     enemyList:
-    - {fileID: 7326417686326490132, guid: b33768e6ea6bd04419350441fd359d95, type: 3}
-    - {fileID: 7326417686326490132, guid: b33768e6ea6bd04419350441fd359d95, type: 3}
-    - {fileID: 7326417686326490132, guid: b33768e6ea6bd04419350441fd359d95, type: 3}
-    - {fileID: 7326417686326490132, guid: b33768e6ea6bd04419350441fd359d95, type: 3}
-    - {fileID: 7326417686326490132, guid: b33768e6ea6bd04419350441fd359d95, type: 3}
-    - {fileID: 7326417686326490132, guid: b33768e6ea6bd04419350441fd359d95, type: 3}
-    - {fileID: 7326417686326490132, guid: b33768e6ea6bd04419350441fd359d95, type: 3}
-  - phaseNumber: 
+    - {fileID: 7326417686326490132, guid: 32378f20519814d528798e5ab394fc65, type: 3}
+    - {fileID: 7326417686326490132, guid: 3df38643242fb4637bc3d22978a8fd9d, type: 3}
+    - {fileID: 7326417686326490132, guid: de224108fd904477e8427a558e2353de, type: 3}
+    - {fileID: 7326417686326490132, guid: fc0e19f18e7634b8fb42a025ca5f39c7, type: 3}
+  - phaseNumber: phase2
     holeInfomation:
-    - holeNumber: 1
-      initTime: 1
+    - holeNumber: 6
+      initTime: 5
       appearTime: 5
+    - holeNumber: 3
+      initTime: 10
+      appearTime: 20
+    - holeNumber: 4
+      initTime: 20
+      appearTime: 20
     enemyList:
+    - {fileID: 7326417686326490132, guid: 32378f20519814d528798e5ab394fc65, type: 3}
     - {fileID: 7326417686326490132, guid: e50c97c06d020b94f9d444c9197a60b9, type: 3}
-  - phaseNumber: 
+    - {fileID: 7326417686326490132, guid: e50c97c06d020b94f9d444c9197a60b9, type: 3}
+  - phaseNumber: phase3
     holeInfomation:
     - holeNumber: 6
       initTime: 1
-      appearTime: 5
+      appearTime: 3
     enemyList:
-    - {fileID: 7326417686326490132, guid: ccdb6e8eafc9182468ae17cf8e3831a2, type: 3}
+    - {fileID: 7326417686326490132, guid: 32378f20519814d528798e5ab394fc65, type: 3}
+    - {fileID: 7326417686326490132, guid: e50c97c06d020b94f9d444c9197a60b9, type: 3}
+  - phaseNumber: phase4
+    holeInfomation:
+    - holeNumber: 5
+      initTime: 1
+      appearTime: 8
+    - holeNumber: 6
+      initTime: 1
+      appearTime: 5
+    - holeNumber: 7
+      initTime: 1
+      appearTime: 8
+    enemyList:
+    - {fileID: 7326417686326490132, guid: 32378f20519814d528798e5ab394fc65, type: 3}
+    - {fileID: 7326417686326490132, guid: 32378f20519814d528798e5ab394fc65, type: 3}
+    - {fileID: 7326417686326490132, guid: 3df38643242fb4637bc3d22978a8fd9d, type: 3}
+    - {fileID: 7326417686326490132, guid: 3df38643242fb4637bc3d22978a8fd9d, type: 3}
+    - {fileID: 7326417686326490132, guid: bfe50c831d1ae448ea3902cef6781576, type: 3}
   existEnemyList: []
   enemyTargetList: {fileID: 1698085772}
 --- !u!4 &323838816
@@ -1443,20 +1447,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseMax: 4
   phaseNow: 0
-  touchLimit: 0
+  touchLimit: 50
   touchNow: 0
   rankList: 
   _tutorial: 0
   TutorialCanvas: []
   tutorialTiming: 
-  breakCountLimit: 3
+  breakCountLimit: 5
   breakCountNow: 0
   breakText: {fileID: 331363095}
   targetPos:
   - {x: 0, y: 4}
-  - {x: 0, y: 3}
-  - {x: 0, y: 2}
-  - {x: 0, y: 1}
+  - {x: 3, y: 4}
+  - {x: -3, y: 4}
+  - {x: 0, y: 4}
   TargetList:
   - {fileID: 7922880631468474908, guid: 64b7cb4340f962e4cb83f8880e58a0fe, type: 3}
   TargetIconList:
@@ -5989,22 +5993,22 @@ MonoBehaviour:
   - {fileID: 819696198676333402, guid: b1326fa9daa679443a2c6082ded95d27, type: 3}
   - {fileID: 819696198676333402, guid: fcd2efadb72948d4f8bda4438dfddf7a, type: 3}
   - {fileID: 819696198676333402, guid: d614d9beab5a7f845a0d925dd220c7a4, type: 3}
-  - {fileID: 8600107677522823322, guid: 775f02c34580ccd4da534916c3304f63, type: 3}
   itemIconSeries:
   - {fileID: 819696198676333402, guid: ca4aa5eb440d08a4a890141b915b54f8, type: 3}
   - {fileID: 819696198676333402, guid: 2fe2681aad5f4d841befae8636ac109e, type: 3}
   - {fileID: 819696198676333402, guid: 55bf6cd988521af42b386c77188d21dc, type: 3}
-  - {fileID: 8600107677522823322, guid: 5ac590681c9304142b019263e5d571e2, type: 3}
   panelSeries:
-  - {fileID: 5188168408292139400, guid: cd318c7e5cade4fa2809fcc3e30ab9d8, type: 3}
-  - {fileID: 5188168408292139400, guid: 659bebef8646f4281a267163f17a0716, type: 3}
-  - {fileID: 5188168408292139400, guid: 6f05c9b13501c4b8893ce5e3d8f6ddb0, type: 3}
-  - {fileID: 5188168408292139400, guid: 2f78090d03b69457780127159a0de305, type: 3}
+  - {fileID: 5188168408292139400, guid: 437dd1d2169b2416eada6240df5a78c0, type: 3}
+  - {fileID: 5188168408292139400, guid: 78489796790bd45ecb9268398041b24a, type: 3}
+  - {fileID: 5188168408292139400, guid: 6ce5b9eb0523a4b56b2849fe434830c4, type: 3}
+  - {fileID: 5188168408292139400, guid: 41eea8c10d28441ee82e549eb291b7de, type: 3}
+  - {fileID: 5188168408292139400, guid: b21aaecf2719344e2a2cb935624077b5, type: 3}
   panelIconSeries:
-  - {fileID: 5188168408292139400, guid: afb03229f35104258a5f1a35914e35e6, type: 3}
-  - {fileID: 5188168408292139400, guid: 7364ebab1f4ff4940858b229f14f1a75, type: 3}
-  - {fileID: 5188168408292139400, guid: a63266adc7b8e492a8281f62c7f63eaf, type: 3}
-  - {fileID: 5188168408292139400, guid: c3b3a43298270496ca3e4bbbd9bee588, type: 3}
+  - {fileID: 5188168408292139400, guid: 1d0d04a7264454fa0a9cb5fa0d95ed53, type: 3}
+  - {fileID: 5188168408292139400, guid: 9825e42f17364437296b8d30e9f9ac9f, type: 3}
+  - {fileID: 5188168408292139400, guid: 92aa18e3601934099b70e5afdefc3db2, type: 3}
+  - {fileID: 5188168408292139400, guid: dc5f1f2e643b64a94a6115e319031ba4, type: 3}
+  - {fileID: 5188168408292139400, guid: 2feb2dc61643a4c99a563a223be34c98, type: 3}
   existItem: []
   existPanel: []
   itemList: []
