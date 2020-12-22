@@ -136,7 +136,8 @@ MonoBehaviour:
   rigidbody2D: {fileID: 866681893784884607}
   initPos: {x: 0, y: 1}
   initSpeed: 300
-  waitTimeLimit: 5
+  play2Target: {x: 0, y: 0}
+  waitTimeLimit: 3
   _failure: 0
   UpSpeed: 4
   DownSpeed: 0.95
