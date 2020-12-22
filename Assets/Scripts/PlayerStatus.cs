@@ -73,11 +73,14 @@ public class PlayerStatus : MonoBehaviour
     {
         if(collision.gameObject.tag == "Mallet")
         {
-            _canCatchMallet = false;
             if (catchingMallet.Contains(collision.gameObject))
             {
                 collision.gameObject.GetComponent<MalletMotion>().play2Target = Vector2.zero;
                 catchingMallet.Remove(collision.gameObject);
+            }
+            if(catchingMallet.Count == 0)
+            {
+                _canCatchMallet = false;
             }
         }
 

@@ -12,6 +12,7 @@ public class HPSystem : MonoBehaviour
     ScoreManager scoreManager;
     GameManager gameManager;
     public ParticleSystem Particle;
+    public ParticleSystem Particle2;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +82,8 @@ public class HPSystem : MonoBehaviour
                         enemyManager.existEnemyList.Remove(this.gameObject);
                         this.gameObject.SetActive(false);
                         phase.breakCountNow -= 1;
+                        gameManager.audioSource.PlayOneShot(gameManager.receiveDamage_se);
+                        Instantiate(Particle2, transform.position, Quaternion.identity);
                         if (phase.breakCountNow <= 0)
                         {
                             gameManager.GameOver();

@@ -41,7 +41,8 @@ public class StagePanelEdit : MonoBehaviour
         parent = this.transform.localPosition;
         foreach(Vector2 vec in vectors)
         {
-            afterPos = vec / expand; // * shrink * shrink;
+            afterPos = vec / (expand*expand); // * shrink * shrink;
+            afterPos.x *= 4.0f / 3.0f;
             GameObject itemSpaceClone = Instantiate(itemSpace);
             itemSpaceClone.name = itemSpace.name;
             itemSpaceClone.transform.parent = this.transform;

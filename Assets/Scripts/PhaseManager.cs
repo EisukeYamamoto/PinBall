@@ -90,20 +90,20 @@ public class PhaseManager : MonoBehaviour
     void Update()
     {
         // 仮のクリア条件：Cキーを押す
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (_pinballPhase)
-            {
-                if (phaseNow < phaseMax)
-                {
-                    PinballClear();
-                }
-                else
-                {
-                    StageClear();
-                }
-            }        
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    if (_pinballPhase)
+        //    {
+        //        if (phaseNow < phaseMax)
+        //        {
+        //            PinballClear();
+        //        }
+        //        else
+        //        {
+        //            StageClear();
+        //        }
+        //    }        
+        //}
         PhaseText();
         breakText.text = breakCountNow.ToString();
         if (targetClone != null)
@@ -149,6 +149,7 @@ public class PhaseManager : MonoBehaviour
     {
         if (!_ready && !gameManager.game_stop_flg)
         {
+            gameManager.audioSource.PlayOneShot(gameManager.start_se);
             StartCoroutine(ReadyGo());
         }      
     }
@@ -289,6 +290,7 @@ public class PhaseManager : MonoBehaviour
         RewardPlateClone.SetActive(false);
         itemManager.GroundColliderSwitchAll(true);
         itemManager.ExistPanelChack(false);
+        itemManager.PanelColliderSwitch(false);
         _stageEditPhase = true;
         phaseNow += 1;
         AppearTarget(0);

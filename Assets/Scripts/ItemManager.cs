@@ -174,6 +174,7 @@ public class ItemManager : MonoBehaviour
         if (existItem.Count > 0)
         {
             Vector2 targetPos = phase.targetPos[phase.phaseNow - 1];
+            ItemTriggerSwitch(phase._stageEditPhase);
             for (int i = existItem.Count - 1; i >= 0; i--)
             {
                 GameObject Item = existItem[i];
@@ -185,20 +186,25 @@ public class ItemManager : MonoBehaviour
                 }
                 if (icon._installaction)
                 {
-                    //Debug.Log(icon.alreadyEditObject);
+                    Debug.Log(icon.alreadyEditObject);
                     if (icon.alreadyEditObject != null)
                     {
                         GameObject ItemIconClone = FindFromSeriesWithIcon(icon.alreadyEditObject, itemSeries, itemIconSeries);
                         existItem.Remove(icon.alreadyEditObject.gameObject);
+                        Debug.Log(icon.gameObject.transform.parent);
                         Item.transform.parent = icon.alreadyEditObject.transform.parent;
                         Destroy(icon.alreadyEditObject);
                         ListAddChack(itemList, holders_item.itemHolderList);
                         itemList.Insert(0, ItemIconClone);
                     }
-                    else
+                    else if (icon.itemSpace != null)
                     {
                         Item.transform.parent = icon.itemSpace.transform;
                         
+                    }
+                    else
+                    {
+                        icon._installaction = false;
                     }
                 }
                 if (distance < distanceLimit && !icon._draging)
@@ -305,6 +311,27 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public void ItemTriggerSwitch(bool _flag)
+    {
+        foreach (GameObject Item in existItem)
+        {
+            if(Item.name == "Slingshot")
+            {
+                Item.GetComponent<EdgeCollider2D>().isTrigger = _flag;
+            }
+            else if(Item.name == "Spinner")
+            {
+                Item.GetComponent<CircleCollider2D>().isTrigger = _flag;
+                Item.GetComponentInChildren<EdgeCollider2D>().enabled　= !_flag;
+            }
+            else
+            {
+                Item.GetComponent<CircleCollider2D>().isTrigger = _flag;
+            }
+            
+        }
+    }
+
 
     public void GroundColliderSwitchAll(bool _flag)
     {
@@ -362,6 +389,19 @@ public class ItemManager : MonoBehaviour
                     break;
                 }
             }
+
+            //foreach(Transform ItemHole in ExistPanel.transform)
+            //{
+            //    if(ItemHole.gameObject.transform.childCount > 0)
+            //    {
+            //        ItemHole.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
+            //    }
+            //    else
+            //    {
+            //        ItemHole.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            //    }
+            //}
         }
     }
 
