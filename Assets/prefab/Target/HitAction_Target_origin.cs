@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class HitAction_Target: MonoBehaviour
+
+public class HitAction_Target_origin: MonoBehaviour
 {
 
     public ParticleSystem Particle01;
