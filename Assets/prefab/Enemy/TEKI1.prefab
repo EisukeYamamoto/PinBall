@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   Particle: {fileID: 19800004, guid: 68c5f49ad3ef24779b27175f1ce33fec, type: 3}
+  Particle2: {fileID: 19800006, guid: 36da259f82d1140a9a283393cb17d8de, type: 3}
 --- !u!114 &6204222851477869993
 MonoBehaviour:
   m_ObjectHideFlags: 0

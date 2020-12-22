@@ -100,7 +100,7 @@ MonoBehaviour:
   itemSpace: {fileID: 4237926933389512922, guid: 456080928a898402d822222c47870dcc,
     type: 3}
   vectors:
-  - {x: 2, y: 0.5}
+  - {x: -2, y: 0.5}
 --- !u!114 &4319598877443323319
 MonoBehaviour:
   m_ObjectHideFlags: 0

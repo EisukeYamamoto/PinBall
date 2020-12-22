@@ -75,6 +75,7 @@ MonoBehaviour:
   negative_se: {fileID: 8300000, guid: c47cc9051ff9a40c8a80920dd113a15c, type: 3}
   pause_se: {fileID: 8300000, guid: 6ac9dfb509351487ca7106b7c04b3fba, type: 3}
   go_se: {fileID: 8300000, guid: e82ab2e877cf94e0fa182e2a86435d3f, type: 3}
+  receiveDamage_se: {fileID: 8300000, guid: 67ec3031a0ffb43e29a548f63c0e30b3, type: 3}
   game_stop_flg: 0
   pause_flg: 0
 --- !u!82 &4605188043612997306

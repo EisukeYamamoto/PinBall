@@ -40,6 +40,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public AudioClip negative_se;
     public AudioClip pause_se;
     public AudioClip go_se;
+    public AudioClip receiveDamage_se;
 
     Button Pause_button;
     Button[] buttons;

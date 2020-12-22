@@ -131,7 +131,7 @@ public class MalletMotion : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("DeadLine"))
             {
-                if (phase._pinballPhase)
+                if (phase._pinballPhase && !p_status._catching && !_catching)
                 {
                     _failure = true;
                     MalletReset();
