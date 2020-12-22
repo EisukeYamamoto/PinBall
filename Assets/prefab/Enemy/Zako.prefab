@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  Particle: {fileID: 0}
+  Particle: {fileID: 19800004, guid: 68c5f49ad3ef24779b27175f1ce33fec, type: 3}
 --- !u!114 &6204222851477869993
 MonoBehaviour:
   m_ObjectHideFlags: 0
