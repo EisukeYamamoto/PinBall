@@ -1101,13 +1101,13 @@ MonoBehaviour:
     - {fileID: 7326417686326490132, guid: e50c97c06d020b94f9d444c9197a60b9, type: 3}
   - phaseNumber: phase4
     holeInfomation:
-    - holeNumber: 5
+    - holeNumber: 4
       initTime: 1
       appearTime: 8
-    - holeNumber: 6
+    - holeNumber: 5
       initTime: 1
       appearTime: 5
-    - holeNumber: 7
+    - holeNumber: 6
       initTime: 1
       appearTime: 8
     enemyList:
@@ -1449,7 +1449,7 @@ MonoBehaviour:
   phaseNow: 0
   touchLimit: 50
   touchNow: 0
-  rankList: 
+  rankList: e0930400400d0300a08601008038010050c30000
   _tutorial: 0
   TutorialCanvas: []
   tutorialTiming: 
@@ -1469,6 +1469,10 @@ MonoBehaviour:
   slider: {fileID: 1905392388}
   Player: {fileID: 1458913000842467446, guid: 3e993446f7fbf4433a8fe13c9b9306fe, type: 3}
   Mallet: {fileID: 866681893784884604, guid: dbd7338ffb8c448e7a9f4a61a37b557a, type: 3}
+  malletPos:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
   PinballButton: {fileID: 1595906720}
   _pinballPhase: 0
   _stageEditPhase: 0

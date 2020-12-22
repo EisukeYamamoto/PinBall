@@ -1361,7 +1361,10 @@ MonoBehaviour:
   slider: {fileID: 1905392388}
   Player: {fileID: 1458913000842467446, guid: 3e993446f7fbf4433a8fe13c9b9306fe, type: 3}
   Mallet: {fileID: 866681893784884604, guid: dbd7338ffb8c448e7a9f4a61a37b557a, type: 3}
-  malletPos: []
+  malletPos:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
   PinballButton: {fileID: 1595906720}
   _pinballPhase: 0
   _stageEditPhase: 0

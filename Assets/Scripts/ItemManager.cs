@@ -215,9 +215,9 @@ public class ItemManager : MonoBehaviour
 
     public void PMFind()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        Mallet = GameObject.FindGameObjectWithTag("Mallet");
-        m_motion = Mallet.GetComponent<MalletMotion>();
+        //Player = GameObject.FindGameObjectWithTag("Player");
+        //Mallet = GameObject.FindGameObjectWithTag("Mallet");
+        //m_motion = Mallet.GetComponent<MalletMotion>();
     }
 
     public void RewardListGenarate()

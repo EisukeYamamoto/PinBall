@@ -197,7 +197,7 @@ public class MalletMotion : MonoBehaviour
         _failure = false;
         waitTimeNow = 0f;
         collider.enabled = true;
-        rigidbody2D.AddForce(down * initSpeed);
+        rigidbody2D.AddForce(new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10)).normalized * initSpeed);
         _waiting = false;
     }
 
