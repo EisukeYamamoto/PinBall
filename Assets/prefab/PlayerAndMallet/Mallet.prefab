@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 6039646ed5b374296b11b9fe8d328451, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3971301ef05d6c24f9c1b7fdd3998752, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   rigidbody2D: {fileID: 866681893784884607}
   initPos: {x: 0, y: 1}
   initSpeed: 300
+  play2Target: {x: 0, y: 0}
   waitTimeLimit: 5
   _failure: 0
   UpSpeed: 4
