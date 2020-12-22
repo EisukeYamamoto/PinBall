@@ -36,8 +36,9 @@ public class PhaseManager : MonoBehaviour
     [Header("プレイヤー/マレット")]
     public GameObject Player;
     public GameObject Mallet;
+    public List<Vector2> malletPos = new List<Vector2>();
     private GameObject playerClone;
-    private GameObject malletClone;
+    private List<GameObject> existMallet = new List<GameObject>();
 
     public GameObject PinballButton;
 
@@ -118,7 +119,12 @@ public class PhaseManager : MonoBehaviour
         _pinballPhase = false;
         
         Destroy(playerClone);
-        Destroy(malletClone);
+        foreach(GameObject mallet in existMallet)
+        {
+            Destroy(mallet);
+        }
+        existMallet.Clear();
+        //Destroy(malletClone);
 
         StartCoroutine(RewardSelect());
     }
@@ -195,7 +201,16 @@ public class PhaseManager : MonoBehaviour
         itemManager.GroundColliderSwitchAll(true);
         itemManager.PanelColliderSwitch(true);
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
-        malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
+        //malletClone = Instantiate(Mallet, new Vector2(0, 1f), Quaternion.identity) as GameObject;
+        foreach(Vector2 pos in malletPos)
+        {
+            GameObject malletClone = Instantiate(Mallet);
+            malletClone.name = Mallet.name;
+            malletClone.transform.position = pos;
+            malletClone.transform.rotation = Quaternion.identity;
+            malletClone.GetComponent<MalletMotion>().initPos = pos;
+            existMallet.Add(malletClone);
+        }
         enemyManager.EnemyHoleSets();
 
         itemManager.PMFind();

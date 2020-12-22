@@ -9,6 +9,8 @@ public class PlayerStatus : MonoBehaviour
     public bool _catching;          //キャッチしている状態
     public Vector2 player2Mallet;   //プレイヤーとマレットの距離
 
+    public List<GameObject> catchingMallet = new List<GameObject>();
+
     PlayerMotion p_motion;
     SpriteRenderer spriteRenderer;
     CircleCollider2D collider2D;
@@ -57,7 +59,12 @@ public class PlayerStatus : MonoBehaviour
             if (collision.gameObject.tag == "Mallet")
             {
                 _canCatchMallet = true;
-                player2Mallet = collision.gameObject.transform.position - this.transform.position;
+                
+                if (!catchingMallet.Contains(collision.gameObject))
+                {
+                    collision.gameObject.GetComponent<MalletMotion>().play2Target = collision.gameObject.transform.position - this.transform.position;
+                    catchingMallet.Add(collision.gameObject);
+                }
             }
         }
     }
@@ -67,6 +74,11 @@ public class PlayerStatus : MonoBehaviour
         if(collision.gameObject.tag == "Mallet")
         {
             _canCatchMallet = false;
+            if (catchingMallet.Contains(collision.gameObject))
+            {
+                collision.gameObject.GetComponent<MalletMotion>().play2Target = Vector2.zero;
+                catchingMallet.Remove(collision.gameObject);
+            }
         }
 
     }
