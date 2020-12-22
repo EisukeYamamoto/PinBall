@@ -47,6 +47,7 @@ public class ItemManager : MonoBehaviour
 
     [Header("ターゲットとの最小距離(これより近いとリストに戻す)")]
     public float distanceLimit;
+    public GameObject alertPanel;
     public AudioSource audioSource;
     public AudioClip boo_se;
     private Vector2 hidePos;
@@ -208,6 +209,7 @@ public class ItemManager : MonoBehaviour
                     audioSource.PlayOneShot(boo_se);
                     ListAddChack(itemList, holders_item.itemHolderList);
                     itemList.Insert(0, ItemIconClone);
+                    StartCoroutine(Alert());
                 }
             }
         }
@@ -372,6 +374,13 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public IEnumerator Alert()
+    {
+        GameObject alert = Instantiate(alertPanel);
 
+        yield return new WaitForSeconds(2.0f);
+
+        Destroy(alert);
+    }
     
 }
