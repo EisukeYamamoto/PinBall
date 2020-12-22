@@ -34,11 +34,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     // Target target_image;
 
     // SE
-    //AudioSource audioSource;
-    //public AudioClip start_se;
-    //public AudioClip positive_se;
-    //public AudioClip negative_se;
-    //public AudioClip pause_se;
+    public AudioSource audioSource;
+    public AudioClip start_se;
+    public AudioClip positive_se;
+    public AudioClip negative_se;
+    public AudioClip pause_se;
+    public AudioClip go_se;
 
     Button Pause_button;
     Button[] buttons;
@@ -63,6 +64,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         LoadComponents();
 
+        audioSource = GetComponent<AudioSource>();
         //デリゲートの登録
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -169,7 +171,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void NextStage()
     {
         // SE
-        //audioSource.PlayOneShot(start_se);
+        audioSource.PlayOneShot(start_se);
         stageSelectNum += 1;
 
         //コルーチンを実行
@@ -180,7 +182,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void GotoSelectStage()
     {
         // SE
-        //audioSource.PlayOneShot(start_se);
+        audioSource.PlayOneShot(start_se);
 
         //コルーチンを実行
         StartCoroutine(WaitForLoadScene(currentStageNum + 1));
@@ -284,7 +286,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             PauseCanvasClone = Instantiate(PauseCanvasPrefab);
 
             // SE
-            //audioSource.PlayOneShot(pause_se);
+            audioSource.PlayOneShot(pause_se);
 
             //ボタンを取得
             buttons = PauseCanvasClone.GetComponentsInChildren<Button>();
@@ -326,6 +328,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         game_stop_flg = true;
         Confilm = Instantiate(ConfilmCanvasPrefab_StageSelect);
+        audioSource.PlayOneShot(pause_se);
 
         Button[] buttons = Confilm.GetComponentsInChildren<Button>();
 
@@ -338,6 +341,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         game_stop_flg = true;
         Confilm = Instantiate(ConfilmCanvasPrefab_Pause_Restart);
+        audioSource.PlayOneShot(pause_se);
 
         Button[] buttons = Confilm.GetComponentsInChildren<Button>();
 
@@ -350,6 +354,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         game_stop_flg = true;
         Confilm = Instantiate(ConfilmCanvasPrefab_Pause_Back);
+        audioSource.PlayOneShot(pause_se);
 
         Button[] buttons = Confilm.GetComponentsInChildren<Button>();
 
@@ -362,6 +367,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         game_stop_flg = true;
         Confilm = Instantiate(ConfilmCanvasPrefab_Pause_Back);
+        audioSource.PlayOneShot(pause_se);
 
         Button[] buttons = Confilm.GetComponentsInChildren<Button>();
 
@@ -374,6 +380,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         game_stop_flg = true;
         Confilm = Instantiate(ConfilmCanvasPrefab_NextStage);
+        audioSource.PlayOneShot(pause_se);
 
         Button[] buttons = Confilm.GetComponentsInChildren<Button>();
 
@@ -385,6 +392,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void GoToStage()
     {
         Destroy(Confilm);
+        audioSource.PlayOneShot(positive_se);
         MoveToStage(currentStageNum + stageSelectNum);
     }
 
@@ -405,7 +413,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Destroy(gameOverCanvasClone);
 
         // SE
-        //audioSource.PlayOneShot(positive_se);
+        audioSource.PlayOneShot(positive_se);
 
         MoveToStage(currentStageNum);
     }
@@ -415,7 +423,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Destroy(resultCanvasClone);
 
         // SE
-        //audioSource.PlayOneShot(positive_se);
+        audioSource.PlayOneShot(positive_se);
 
         MoveToStage(currentStageNum);
     }
@@ -427,7 +435,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Destroy(Confilm);
 
         // SE
-        //audioSource.PlayOneShot(negative_se);
+        audioSource.PlayOneShot(negative_se);
 
         MoveToStage(1);
     }
@@ -438,7 +446,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         //Destroy(gameOverCanvasClone);
 
         // SE
-        //audioSource.PlayOneShot(negative_se);
+        audioSource.PlayOneShot(negative_se);
 
         MoveToStage(0);
     }
@@ -448,7 +456,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Destroy(resultCanvasClone);
 
         // SE
-        //audioSource.PlayOneShot(negative_se);
+        audioSource.PlayOneShot(negative_se);
 
         currentStageNum = 0;
 
@@ -461,7 +469,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Destroy(PauseCanvasClone);
         Destroy(Confilm);
         // SE
-        //audioSource.PlayOneShot(positive_se);
+        audioSource.PlayOneShot(positive_se);
         MoveToStage(currentStageNum);
     }
 
@@ -470,7 +478,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         Destroy(PauseCanvasClone);
         // SE
-        //audioSource.PlayOneShot(positive_se);
+        audioSource.PlayOneShot(positive_se);
         game_stop_flg = false;
         pause_flg = true;
     }
@@ -481,7 +489,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Destroy(PauseCanvasClone);
         Destroy(Confilm);
         // SE
-        //audioSource.PlayOneShot(negative_se);
+        audioSource.PlayOneShot(negative_se);
 
         MoveToStage(1);
     }
@@ -490,7 +498,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void ExitGame()
     {
         // SE
-        //audioSource.PlayOneShot(negative_se);
+        audioSource.PlayOneShot(negative_se);
         Application.Quit();
     }
 }

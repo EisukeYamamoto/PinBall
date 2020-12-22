@@ -208,12 +208,14 @@ public class PhaseManager : MonoBehaviour
 
         message.text = "GO!!";
 
+        gameManager.audioSource.PlayOneShot(gameManager.go_se);
+
         _pinballPhase = true;
         _stageEditPhase = !_pinballPhase;
 
         ////プレイヤーを移動可能にさせる
-        //gameManager.game_stop_flg = false;
-        //gameManager.pause_flg = true;
+        gameManager.game_stop_flg = false;
+        gameManager.pause_flg = true;
 
 
         yield return new WaitForSeconds(waitTime);
