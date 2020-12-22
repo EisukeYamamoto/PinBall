@@ -86,15 +86,16 @@ public class PlayerMotion : MonoBehaviour
         {
             foreach(GameObject mallet in p_status.catchingMallet)
             {
+                Debug.Log(mallet);
                 mallet.transform.rotation = Quaternion.identity;
                 MalletMotion m_motion = mallet.GetComponent<MalletMotion>();
                 m_motion.rigidbody2D.AddForce(new Vector2(0, 1f) * m_motion.initSpeed * 1.5f);
                 m_motion.play2Target = Vector2.zero;
-                _afterShot = true;
             }
             p_status.catchingMallet.Clear();
-            
+            p_status._canCatchMallet = false;
             p_status._catching = false;
+            _afterShot = true;
             phaseManager.touchNow += 1;
         }    
     }

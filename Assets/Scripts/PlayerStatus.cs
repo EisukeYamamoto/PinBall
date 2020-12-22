@@ -88,7 +88,7 @@ public class PlayerStatus : MonoBehaviour
         if (_canCatchMallet && !gameManager.game_stop_flg)
         {
             _catching = true;
-            _canCatchMallet = false;
+            //_canCatchMallet = false;
         }
     }
 
