@@ -14,8 +14,8 @@ public class PlayerMotion : MonoBehaviour
 
     PlayerStatus p_status;
 
-    GameObject Mallet;
-    MalletMotion m_motion;
+    //GameObject Mallet;
+    //MalletMotion m_motion;
 
     public float shotTimeLimit = 1f;
     private float shotTimeNow = 0f;
@@ -27,11 +27,11 @@ public class PlayerMotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Mallet = GameObject.FindGameObjectWithTag("Mallet");
+        //Mallet = GameObject.FindGameObjectWithTag("Mallet");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         phaseManager = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         p_status = GetComponent<PlayerStatus>();
-        m_motion = Mallet.GetComponent<MalletMotion>();
+        //m_motion = Mallet.GetComponent<MalletMotion>();
         _afterShot = false;
     }
 
@@ -82,10 +82,20 @@ public class PlayerMotion : MonoBehaviour
 
     void Shot()
     {
-        Mallet.transform.rotation = Quaternion.identity;
-        m_motion.rigidbody2D.AddForce(new Vector2(0, 1f) * m_motion.initSpeed * 1.5f);
-        _afterShot = true;
-        p_status._catching = false;
-        phaseManager.touchNow += 1;
+        if(p_status.catchingMallet.Count > 0)
+        {
+            foreach(GameObject mallet in p_status.catchingMallet)
+            {
+                mallet.transform.rotation = Quaternion.identity;
+                MalletMotion m_motion = mallet.GetComponent<MalletMotion>();
+                m_motion.rigidbody2D.AddForce(new Vector2(0, 1f) * m_motion.initSpeed * 1.5f);
+                m_motion.play2Target = Vector2.zero;
+                _afterShot = true;
+            }
+            p_status.catchingMallet.Clear();
+            
+            p_status._catching = false;
+            phaseManager.touchNow += 1;
+        }    
     }
 }

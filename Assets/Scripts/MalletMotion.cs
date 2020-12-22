@@ -19,6 +19,8 @@ public class MalletMotion : MonoBehaviour
     public Vector2 initPos;
     public float initSpeed = 200f;  // 最初のスピード
 
+    public Vector2 play2Target;
+
     public float waitTimeLimit = 3f;  // 失敗したときのロスタイム
     private float waitTimeNow = 0f;
 
@@ -29,6 +31,8 @@ public class MalletMotion : MonoBehaviour
     private bool _pause = false;
 
     private bool _waiting = false;
+
+    private bool _catching = false;
 
     public float UpSpeed, DownSpeed;
     public float MaxSpeed, MinSpeed;
@@ -76,11 +80,11 @@ public class MalletMotion : MonoBehaviour
                 }
             }
 
-            if (p_status._catching)
+            if (p_status._catching && _catching)
             {
                 rigidbody2D.velocity = Vector2.zero;
                 Vector2 p_pos = Player.transform.position;
-                this.transform.position = p_pos + p_status.player2Mallet;
+                this.transform.position = p_pos + play2Target;
             }
 
             //速度低下
@@ -147,6 +151,40 @@ public class MalletMotion : MonoBehaviour
                     if (GetComponent<Rigidbody2D>().velocity.magnitude < MaxSpeed)
                         rigidbody2D.velocity *= UpSpeed;
                 }   
+            }
+            
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!gameManager.game_stop_flg)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                _catching = true;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!gameManager.game_stop_flg)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                _catching = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!gameManager.game_stop_flg)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                _catching = false;
             }
         }
     }
