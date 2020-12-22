@@ -78,6 +78,7 @@ public class IconManager: MonoBehaviour
                 if(distance < itemManager.distanceLimit)
                 {
                     itemManager.audioSource.PlayOneShot(itemManager.boo_se);
+                    StartCoroutine(itemManager.Alert());
                 }
 
                 this.transform.position = prevPos;

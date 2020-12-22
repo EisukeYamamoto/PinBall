@@ -6081,8 +6081,10 @@ MonoBehaviour:
   rewardList: []
   selectList: []
   distanceLimit: 2
+  alertPanel: {fileID: 855994574734250246, guid: c6082002652aa46a9ba87714bcdb9682,
+    type: 3}
   audioSource: {fileID: 0}
-  boo_se: {fileID: 8300000, guid: bcd9e1826487bcc429f86e26afe6f6eb, type: 3}
+  boo_se: {fileID: 8300000, guid: c47cc9051ff9a40c8a80920dd113a15c, type: 3}
   appearPos: {x: -300, y: -2.5}
 --- !u!4 &1932367240
 Transform:
