@@ -25,8 +25,8 @@ public class PhaseManager : MonoBehaviour
     [Header("ターゲットリスト")]
     public Vector2[] targetPos;
     public List<GameObject> TargetList;
-    public List<GameObject> TargetIconList;
-    public Vector2 targetIconPos ;
+    //public List<GameObject> TargetIconList;
+    //public Vector2 targetIconPos ;
     GameObject targetClone;
     GameObject targetIcon;
     HPSystem targetHP;
@@ -183,9 +183,9 @@ public class PhaseManager : MonoBehaviour
         {
             Destroy(targetIcon);
         }
-        targetIcon = Instantiate(TargetIconList[targetnum]);
-        targetIcon.name = TargetIconList[targetnum].name;
-        targetIcon.transform.position = targetIconPos;
+        //targetIcon = Instantiate(TargetIconList[targetnum]);
+        //targetIcon.name = TargetIconList[targetnum].name;
+        //targetIcon.transform.position = targetIconPos;
         targetHP = targetClone.GetComponent<HPSystem>();
         hpMax = targetHP.hp;
         hpNow = hpMax;
