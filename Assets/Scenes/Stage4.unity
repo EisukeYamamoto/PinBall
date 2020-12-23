@@ -475,8 +475,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108288739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.4, y: 0, z: 0}
-  m_LocalScale: {x: 0.44502804, y: 1.25, z: 1}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 453325620}
   m_RootOrder: 0
@@ -1046,16 +1046,16 @@ MonoBehaviour:
     holeInfomation:
     - holeNumber: 0
       initTime: 2
-      appearTime: 1
+      appearTime: 3
     - holeNumber: 1
       initTime: 2
-      appearTime: 1
+      appearTime: 3
     - holeNumber: 2
       initTime: 2
-      appearTime: 1
+      appearTime: 3
     - holeNumber: 3
       initTime: 2
-      appearTime: 1
+      appearTime: 3
     enemyList:
     - {fileID: 7326417686326490132, guid: b40a7fe2ef7b3485ab6a6c1ff1696ae0, type: 3}
   - phaseNumber: phase6
@@ -1201,9 +1201,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phaseMax: 10
   phaseNow: 0
-  touchLimit: 160
+  touchLimit: 50
   touchNow: 0
-  rankList: c0c62d0080841e0040420f001400000001000000
+  rankList: c0c62d0040420f0020a10700a086010001000000
   _tutorial: 0
   TutorialCanvas: []
   tutorialTiming: 
@@ -5100,8 +5100,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727298523}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.44, y: -0.08875, z: 0}
-  m_LocalScale: {x: 0.44502804, y: 1.25, z: 1}
+  m_LocalPosition: {x: -5, y: -0.08875, z: 0}
+  m_LocalScale: {x: 2, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 453325620}
   m_RootOrder: 1

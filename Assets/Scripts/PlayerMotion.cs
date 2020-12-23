@@ -82,9 +82,9 @@ public class PlayerMotion : MonoBehaviour
 
     void Shot()
     {
-        if(p_status.catchingMallet.Count > 0)
+        if(p_status.catchingMalletNow.Count > 0)
         {
-            foreach(GameObject mallet in p_status.catchingMallet)
+            foreach(GameObject mallet in p_status.catchingMalletNow)
             {
                 mallet.transform.rotation = Quaternion.identity;
                 MalletMotion m_motion = mallet.GetComponent<MalletMotion>();
@@ -92,6 +92,7 @@ public class PlayerMotion : MonoBehaviour
                 m_motion.play2Target = Vector2.zero;
             }
             p_status.catchingMallet.Clear();
+            p_status.catchingMalletNow.Clear();
             p_status._canCatchMallet = false;
             p_status._catching = false;
             _afterShot = true;

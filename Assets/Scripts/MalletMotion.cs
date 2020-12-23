@@ -6,6 +6,7 @@ public class MalletMotion : MonoBehaviour
 {
     GameObject Player;
     PlayerStatus p_status;
+    PlayerMotion p_motion;
 
     PhaseManager phase;
     GameManager gameManager;
@@ -44,6 +45,7 @@ public class MalletMotion : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         p_status = Player.GetComponent<PlayerStatus>();
+        p_motion = Player.GetComponent<PlayerMotion>();
         phase = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
@@ -94,9 +96,9 @@ public class MalletMotion : MonoBehaviour
 
             //止まったときの処理
             //最低速度に達すると、初期位置に再配置する
-            if (rigidbody2D.velocity.magnitude <= speedLimit &&
+            if (rigidbody2D.velocity.magnitude < speedLimit &&
                 rigidbody2D.velocity.magnitude > 0 &&
-                !p_status._catching && !_waiting && _start)
+                !p_status.catchingMalletNow.Contains(this.gameObject) && !_waiting && _start && !p_motion._afterShot)
             {
                 if (phase._pinballPhase)
                 {
@@ -131,17 +133,13 @@ public class MalletMotion : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("DeadLine"))
             {
-                if (phase._pinballPhase && !p_status._catching && !_catching)
+                if (phase._pinballPhase && !p_status.catchingMalletNow.Contains(this.gameObject))
                 {
                     _failure = true;
                     MalletReset();
                 }
             }
-            // 仮
-            if (collision.gameObject.CompareTag("Wall"))
-            {
-                
-            }
+
             if (collision.gameObject.CompareTag("Bumper"))
             {
                 if (phase._pinballPhase)
@@ -204,6 +202,15 @@ public class MalletMotion : MonoBehaviour
     // マレットの動きリセット
     private void MalletReset()
     {
+        Debug.Log("Reset");
+        if (p_status.catchingMalletNow.Contains(this.gameObject))
+        {
+            p_status.catchingMalletNow.Remove(this.gameObject);
+            if (p_status.catchingMallet.Contains(this.gameObject))
+            {
+                p_status.catchingMallet.Remove(this.gameObject);
+            }
+        }
         waitTimeNow = 0f;
         rigidbody2D.velocity = Vector2.zero;
         collider.enabled = false;
