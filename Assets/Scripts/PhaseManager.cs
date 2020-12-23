@@ -199,6 +199,7 @@ public class PhaseManager : MonoBehaviour
     {
         //yield return new WaitForEndOfFrame();
         _ready = true;
+        _stageEditPhase = false;
         itemManager.GroundColliderSwitchAll(true);
         itemManager.PanelColliderSwitch(true);
         playerClone = Instantiate(Player, new Vector2(0, -3f), Quaternion.identity) as GameObject;
@@ -227,7 +228,7 @@ public class PhaseManager : MonoBehaviour
         gameManager.audioSource.PlayOneShot(gameManager.go_se);
 
         _pinballPhase = true;
-        _stageEditPhase = !_pinballPhase;
+        //_stageEditPhase = !_pinballPhase;
 
         ////プレイヤーを移動可能にさせる
         gameManager.game_stop_flg = false;

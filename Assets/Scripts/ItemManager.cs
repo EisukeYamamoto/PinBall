@@ -183,6 +183,16 @@ public class ItemManager : MonoBehaviour
                 if (!icon._draging)
                 {
                     Item.transform.localPosition = new Vector2(0, 0);
+                    if(distance < distanceLimit)
+                    {
+                        GameObject ItemIconClone = FindFromSeriesWithIcon(Item, itemSeries, itemIconSeries);
+                        existItem.Remove(Item);
+                        Destroy(Item);
+                        audioSource.PlayOneShot(boo_se);
+                        ListAddChack(itemList, holders_item.itemHolderList);
+                        itemList.Insert(0, ItemIconClone);
+                        StartCoroutine(Alert());
+                    }
                 }
                 if (icon._installaction)
                 {
@@ -207,16 +217,16 @@ public class ItemManager : MonoBehaviour
                         icon._installaction = false;
                     }
                 }
-                if (distance < distanceLimit && !icon._draging)
-                {
-                    GameObject ItemIconClone = FindFromSeriesWithIcon(Item, itemSeries, itemIconSeries);
-                    existItem.Remove(Item);
-                    Destroy(Item);
-                    audioSource.PlayOneShot(boo_se);
-                    ListAddChack(itemList, holders_item.itemHolderList);
-                    itemList.Insert(0, ItemIconClone);
-                    StartCoroutine(Alert());
-                }
+                //if (distance < distanceLimit && !icon._draging)
+                //{
+                //    GameObject ItemIconClone = FindFromSeriesWithIcon(Item, itemSeries, itemIconSeries);
+                //    existItem.Remove(Item);
+                //    Destroy(Item);
+                //    audioSource.PlayOneShot(boo_se);
+                //    ListAddChack(itemList, holders_item.itemHolderList);
+                //    itemList.Insert(0, ItemIconClone);
+                //    StartCoroutine(Alert());
+                //}
             }
         }
     }
